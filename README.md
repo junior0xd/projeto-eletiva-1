@@ -1,5 +1,32 @@
 # Início
 Este é o repositório do projeto referente a matéria Programação Web
+
+# Problemas
+
+### Problema: PDOException: Could not find Driver
+1. Se você instalou o apache através do XAMPP, baixe as extensões do MySQL para o PHP.
+```bash
+    sudo apt update
+    sudo apt install php-mysql
+```
+2. Verifique se a extensão está habilitada no arquivo `php.ini`.\
+
+    Na minha máquina está instalado a versão 8.3 do PHP e estou utilizando o editor Xed.
+```bash
+    sudo xed /etc/php/8.3/apache2/php.ini
+```
+\
+    Procure por `extension=pdo_mysql` e remova o ponto e vírgula (`;`) no início da linha, se houver.\
+    Adicione a linha `extension=pdo` se não estiver presente.
+
+
+3. Reinicie o servidor Apache.
+```bash
+    sudo systemctl restart apache2
+```
+4. Verifique se o problema foi resolvido acessando sua aplicação novamente.
+
+
 # Licença
 
 MIT License
