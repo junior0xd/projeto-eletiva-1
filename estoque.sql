@@ -1,6 +1,4 @@
 CREATE DATABASE IF NOT EXISTS projeto_estoque;
-DEFAULT CHARACTER SET utf8mb4;
-DEFAULT COLLATE utf8mb4_unicode_ci;
 USE projeto_estoque;
 
 CREATE TABLE IF NOT EXISTS usuarios(
@@ -9,12 +7,12 @@ CREATE TABLE IF NOT EXISTS usuarios(
     cadastro VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS produtos(
+CREATE TABLE IF NOT EXISTS produ-tos(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     quantidade INT NOT NULL,
     data_adicionado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
