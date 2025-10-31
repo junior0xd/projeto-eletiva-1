@@ -79,7 +79,7 @@
                 <button type="submit" class="btn btn-success mt-3 w-100">Registrar</button>
                 <div class="form-text text-light mt-3">
                     Já possui uma conta? 
-                    <a href="#" class="text-info">Faça login</a>
+                    <a href="login.php" class="text-info">Faça login</a>
                 </div>
             </form>
 
