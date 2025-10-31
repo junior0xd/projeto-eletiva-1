@@ -82,7 +82,6 @@
                     <a href="login.php" class="text-info">Faça login</a>
                 </div>
             </form>
-
     </main>
     <script src="bootstrap.bundle.min.js"></script>
 </body>
