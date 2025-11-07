@@ -11,7 +11,7 @@ require('echo-out.php');
     <title>Login</title>
 </head>
 
-<body class="text-bg-dark d-flex justify-content-center align-items-center vh-100">
+<body class="text-bg-dark d-flex justify-content-center vh-100">
     <main class="container w-25 mt-5 p-4">
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
