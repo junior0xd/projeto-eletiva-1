@@ -23,8 +23,11 @@ session_start();
                     <a class="nav-link active" aria-current="page" href="#"><strong class="fs-5">INÍCIO</strong></a>
                 </li>
             </ul>
-            <div class="d-flex">
-                <a class="btn btn-outline-light me-2"><?= $_SESSION['nome_usuario']?></a>
+            <div class="navbar-nav ms-auto dropdown">
+                <input class="btn btn-outline-success dropdown-toggle me-2 text-white" value=<?=$_SESSION['nome_usuario']?> type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="dropdown-menu w-100 dropdown-menu-end dropdown-menu-dark dropdown-menu-start">
+                    <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+                </ul>            
             </div>
         </div>
     </nav>
