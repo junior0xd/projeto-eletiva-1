@@ -1,6 +1,13 @@
 # Início
 Este é o repositório do projeto referente a matéria Programação Web
 
+# Próximos Passos
+1. Adicionar Modal no Botão de Filtros
+2. Adicionar Modal para Novos Produtos
+3. Melhorar a Responsividade do Site
+4. Adicionar Página de Perfil do Usuário
+5. Adicionar Página de Detalhes do Produto
+
 # Problemas
 
 ### Problema: PDOException: Could not find Driver
