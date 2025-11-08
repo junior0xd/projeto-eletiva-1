@@ -14,7 +14,7 @@ require('../echo-out.php');
     <main class="container w-25 mt-5 p-4">
         <?php
         if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
-            echoAlerta('Sua sessão expirou. Por favor, faça login novamente.');
+            echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
@@ -34,7 +34,7 @@ require('../echo-out.php');
                     header('Location: landpage.php');
                     exit();
                 } else {
-                    echoAlerta('Cadastro ou senha inválidos. Por favor, tente novamente.');
+                    echoAlertaWarning('Cadastro ou senha inválidos. Por favor, tente novamente.');
                 }
             } catch (Exception $e) {
                 echo 'Error: ' . $e->getMessage();
