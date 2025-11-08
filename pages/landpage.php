@@ -45,10 +45,7 @@ require('../auth.php');
                     <button class="btn btn-outline-light ms-0" type="submit">Buscar</button>
                     <input class="btn btn-outline-info ms-1" type="button" value="Filtros">
                 </div>
-                    
-
             </div>
-
         </form>
     </main>
     <script src="../bootstrap.bundle.min.js"></script>
