@@ -43,7 +43,12 @@ require('../auth.php');
                 </div>
                 <div class=" col-auto">
                     <button class="btn btn-outline-light ms-0" type="submit">Buscar</button>
-                    <input class="btn btn-outline-info ms-1" type="button" value="Filtros">
+                    <input class="btn btn-outline-info ms-1" type="button" value="Filtros" data-bs-toggle="collapse" data-bs-target="#filtros">
+                </div>
+                <div class="collapse" id="filtros">
+                    <div class="card card-body mt-3 bg-black bg-opacity-10 border-secondary">
+                        Filtros de busca (em construção)
+                    </div>
                 </div>
             </div>
         </form>
