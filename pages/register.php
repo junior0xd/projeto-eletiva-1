@@ -5,7 +5,7 @@ function usuarioJaRegistrado($cadastro, $pdo)
     $stmt->execute(['cadastro' => $cadastro]);
     return $stmt->fetchColumn() > 0;
 }
-require('echo-out.php');
+require('../echo-out.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -13,7 +13,7 @@ require('echo-out.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Registro</title>
 </head>
 
@@ -21,7 +21,7 @@ require('echo-out.php');
     <main class="container w-25 mt-5 p-4">
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require('conexao.php');
+            require('../database/conexao.php');
             $nome = $_POST['nome'];
             $cadastro = $_POST['cadastro'];
             $senha = $_POST['senha'];
@@ -78,7 +78,7 @@ require('echo-out.php');
             </div>
         </form>
     </main>
-    <script src="bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

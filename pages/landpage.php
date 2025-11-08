@@ -6,8 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="custom.css" rel="stylesheet">
+    <link href="../bootstrap-icons.min.css" rel="stylesheet">
     <title>Land Page</title>
 </head>
 <body class="text-bg-dark bg-dark">
@@ -53,6 +52,6 @@ session_start();
 
         </form>
     </main>
-    <script src="bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-require('echo-out.php');
+require('../echo-out.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,7 +7,7 @@ require('echo-out.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Login</title>
 </head>
 
@@ -60,7 +60,7 @@ require('echo-out.php');
             </div>
         </form>
     </main>
-    <script src="bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
