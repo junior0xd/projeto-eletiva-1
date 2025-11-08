@@ -16,7 +16,7 @@ require('../echo-out.php');
     <title>Registro</title>
 </head>
 <body class="text-bg-dark d-flex justify-content-center vh-100">
-    <main class="container w-25 mt-5 p-4">
+    <main class="mt-5 p-4">
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');

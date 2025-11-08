@@ -10,8 +10,8 @@ require('../echo-out.php');
     <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Login</title>
 </head>
-<body class="text-bg-dark d-flex justify-content-center vh-100">
-    <main class="container w-25 mt-5 p-4">
+<body class="text-bg-dark d-flex justify-content-center">
+    <main class="mt-5 p-4">
         <?php
         if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
             echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
