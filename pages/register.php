@@ -9,14 +9,12 @@ require('../echo-out.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Registro</title>
 </head>
-
 <body class="text-bg-dark d-flex justify-content-center vh-100">
     <main class="container w-25 mt-5 p-4">
         <?php
@@ -80,5 +78,4 @@ require('../echo-out.php');
     </main>
     <script src="../bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

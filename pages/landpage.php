@@ -1,12 +1,12 @@
-<?php 
-session_start();
+<?php
+require('../auth.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Land Page</title>
 </head>
 <body class="text-bg-dark bg-dark">
@@ -30,7 +30,6 @@ session_start();
             </div>
         </div>
     </nav>
-
     <main class="container w-100 mt-4">
         <form>
             <div class="row justify-content-center">
