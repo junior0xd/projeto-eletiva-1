@@ -2,14 +2,14 @@
 require('../auth.php');
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Land Page</title>
 </head>
-<body class="text-bg-dark bg-dark">
+<body class="">
     <nav class="navbar navbar-expand bg-black bg-opacity-10 navbar-dark px-2 py-3 mt-1">
         <div class="container-fluid">
             <a class="navbar-brand p-0 me-0 text-center col-1" href="#">
@@ -35,10 +35,10 @@ require('../auth.php');
             <div class="row justify-content-center">
                 <div class="col-6 col-md-8 col-lg-10">
                     <div class="input-group text-white mt-2">
-                        <span class="input-group-text bg-dark text-white border-secondary">
+                        <span class="input-group-text">
                             <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
                         </span>
-                    <input type="text" class="form-control bg-dark border-secondary fw-medium text-white" placeholder="Procurar...">
+                    <input type="text" class="form-control fw-medium" placeholder="Procurar...">
                     </div>
                 </div>
                 <div class="col-auto mt-2">
@@ -49,6 +49,11 @@ require('../auth.php');
                     <div class="card card-body mt-3 bg-black bg-opacity-10 border-secondary">
                         Filtros de busca (em construção)
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-10 offset-md-9 offset-8 col-auto mt-3">
+                    <a href="add-item.php" class="btn btn-success ms-lg-5">Novo Item</a>
                 </div>
             </div>
         </form>

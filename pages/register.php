@@ -8,14 +8,14 @@ function usuarioJaRegistrado($cadastro, $pdo)
 require('../echo-out.php');
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Registro</title>
 </head>
-<body class="text-bg-dark d-flex justify-content-center vh-100">
+<body class="d-flex justify-content-center vh-100">
     <main class="mt-5 p-4">
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -53,21 +53,21 @@ require('../echo-out.php');
         </div>
         <form class="" action="register.php" method="POST">
             <div class="form-floating mb-4">
-                <input type="text" class="form-control bg-dark text-white border-secondary" id="nome" name="nome" placeholder="Digite seu nome">
-                <label for="nome" class="form-label text-light fw-medium">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+                <label for="nome" class="form-label fw-medium">Nome</label>
             </div>
             <div class="form-floating mb-4">
-                <input type="text" class="form-control bg-dark text-white border-secondary" id="cadastro" name="cadastro" placeholder="Digite seu cadastro">
-                <label for="cadastro" class="form-label text-light fw-medium">Cadastro</label>
+                <input type="text" class="form-control" id="cadastro" name="cadastro" placeholder="Digite seu cadastro">
+                <label for="cadastro" class="form-label fw-medium">Cadastro</label>
             </div>
             </div>
             <div class="form-floating mb-1">
-                <input type="password" class="form-control bg-dark text-white border-secondary" id="senha" name="senha" placeholder="Digite sua senha">
-                <label for="senha" class="form-label text-light fw-medium">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                <label for="senha" class="form-label fw-medium">Senha</label>
             </div>
             <div class="form-floating mb-2">
-                <input type="password" class="form-control bg-dark text-white border-secondary" name="confirmSenha" id="confirmSenha" placeholder="Confirme sua senha">
-                <label for="confirmSenha" class="form-label text-light fw-medium">Confirme sua senha</label>
+                <input type="password" class="form-control" name="confirmSenha" id="confirmSenha" placeholder="Confirme sua senha">
+                <label for="confirmSenha" class="form-label fw-medium">Confirme sua senha</label>
             </div>
             <button type="submit" class="btn btn-success mt-3 w-100">Registrar</button>
             <div class="form-text text-light mt-3">

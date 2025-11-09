@@ -3,14 +3,14 @@ session_start();
 require('../echo-out.php');
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap.min.css" rel="stylesheet">
     <title>Login</title>
 </head>
-<body class="text-bg-dark d-flex justify-content-center">
+<body class="d-flex justify-content-center">
     <main class="mt-5 p-4">
         <?php
         if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
@@ -48,12 +48,12 @@ require('../echo-out.php');
         </div>
         <form action="login.php" method="POST">
             <div class="form-floating mb-1">
-                <input type="text" class="form-control bg-dark text-white border-secondary" id="cadastro" placeholder="Digite seu cadastro" name="cadastro">
-                <label for="cadastro" class="form-label text-light fw-medium">Cadastro</label>
+                <input type="text" class="form-control" id="cadastro" placeholder="Digite seu cadastro" name="cadastro">
+                <label for="cadastro" class="form-label fw-medium">Cadastro</label>
             </div>
             <div class="form-floating mb-2">
-                <input type="password" class="form-control bg-dark text-white border-secondary" id="password" placeholder="Digite sua senha" name="password">
-                <label for="password" class="form-label text-light fw-medium">Senha</label>
+                <input type="password" class="form-control" id="password" placeholder="Digite sua senha" name="password">
+                <label for="password" class="form-label fw-medium">Senha</label>
             </div>
             <a href="#" class="fs-6 text-info">Esqueci minha senha</a>
             <button type="submit" class="btn btn-success mt-3 w-100">Entrar</button>
