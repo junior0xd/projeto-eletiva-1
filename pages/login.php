@@ -1,6 +1,37 @@
 <?php
 session_start();
 require('../echo-out.php');
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
+            echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
+        }
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['nao_logado'])) {
+            echoAlertaDanger('Você precisa estar logado para acessar essa página.');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require('../database/conexao.php');
+            $cadastro = $_POST['cadastro'];
+            $senha = $_POST['password'];
+            try {
+                $stmt = $pdo->prepare("SELECT * FROM usuario WHERE cadastro = :cadastro");
+                $stmt->execute(['cadastro' => $cadastro]);
+                $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+                if(empty($usuario)){
+                    $usuario_nao_localizado = true;
+                }
+                if ($usuario && password_verify($senha, $usuario['senha'])) {
+                    $_SESSION['acesso'] = true;
+                    $_SESSION['nome_usuario'] = $usuario['nome'];
+                    $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
+                    $_SESSION['ultimo_acesso'] = time();
+                    header('Location: landpage.php');
+                    exit();
+                } else{
+                    $senha_invalida = true;
+                }
+            } catch (Exception $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
@@ -17,37 +48,11 @@ require('../echo-out.php');
             <h1 class="fs-4">ESF VIDA NOVA</h1>
             <h2 class="fs-6 mt-3">Entrada</h2>
         </div>
-                <?php
-        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
-            echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
-        }
-        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['nao_logado'])) {
-            echoAlertaDanger('Você precisa estar logado para acessar essa página.');
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require('../database/conexao.php');
-            $cadastro = $_POST['cadastro'];
-            $senha = $_POST['password'];
-            try {
-                $stmt = $pdo->prepare("SELECT * FROM usuario WHERE cadastro = :cadastro");
-                $stmt->execute(['cadastro' => $cadastro]);
-                $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($usuario && password_verify($senha, $usuario['senha'])) {
-                    echoSucesso('Login realizado com sucesso!');
-                    $_SESSION['acesso'] = true;
-                    $_SESSION['nome_usuario'] = $usuario['nome'];
-                    $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
-                    $_SESSION['ultimo_acesso'] = time();
-                    header('Location: landpage.php');
-                    exit();
-                } else {
-                    echoAlertaWarning('Cadastro ou senha inválidos. Por favor, tente novamente.');
-                }
-            } catch (Exception $e) {
-                echo 'Error: ' . $e->getMessage();
-            }
-        }
-        ?>
+        <?php if($senha_invalida && !$usuario_nao_localizado){ 
+            echoAlertaWarning('Cadastro ou senha inválidos.');
+        } elseif($usuario_nao_localizado){
+            echoAlertaDanger('Cadastro não localizado.');
+        }?>
         <form action="login.php" method="POST">
             <div class="form-floating mb-1">
                 <input type="text" class="form-control" id="cadastro" placeholder="Digite seu cadastro" name="cadastro">
