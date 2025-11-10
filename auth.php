@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (empty($_SESSION['acesso'])) {
-    header('Location: login.php?notloggedin=true');
+    header('Location: login.php?nao_logado=true');
     exit();
 } 
 if (isset($_SESSION['ultimo_acesso'])) {
@@ -10,7 +10,7 @@ if (isset($_SESSION['ultimo_acesso'])) {
     if (time() - $_SESSION['ultimo_acesso'] > $tempo_limite) {
         session_unset();
         session_destroy();
-        header('Location: login.php');
+        header('Location: login.php?sessao_expirada=true');
         exit();
     } else {
         $_SESSION['ultimo_acesso'] = time();

@@ -21,6 +21,9 @@ require('../echo-out.php');
         if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
             echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
         }
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['nao_logado'])) {
+            echoAlertaDanger('Você precisa estar logado para acessar essa página.');
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
             $cadastro = $_POST['cadastro'];
