@@ -10,7 +10,6 @@ function echoSucesso($mensagem)
                             </div>
                         </div>';
 }
-
 function echoAlertaWarning($mensagem)
 {
     echo '<div class="alert alert-warning d-flex align-items-center" role="alert">
@@ -22,7 +21,6 @@ function echoAlertaWarning($mensagem)
                             </div>
                         </div>';
 }
-
 function echoAlertaDanger($mensagem)
 {
     echo '<div class="alert alert-danger d-flex align-items-center" role="alert">

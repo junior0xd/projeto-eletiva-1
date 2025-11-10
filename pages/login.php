@@ -34,7 +34,6 @@ require('../echo-out.php');
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($usuario && password_verify($senha, $usuario['senha'])) {
                     echoSucesso('Login realizado com sucesso!');
-                    sleep(2);
                     $_SESSION['acesso'] = true;
                     $_SESSION['nome_usuario'] = $usuario['nome'];
                     $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
