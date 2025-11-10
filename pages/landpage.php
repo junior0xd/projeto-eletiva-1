@@ -1,5 +1,7 @@
 <?php
 require('../auth.php');
+require('../database/conexao.php');
+require('../recuperar_produtos.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
@@ -31,6 +33,11 @@ require('../auth.php');
         </div>
     </nav>
     <main class="container w-100 mt-4">
+        <div class="row">
+                <div class="offset-lg-10 offset-md-8 offset-8 col-lg-2 mt-3 col-md-4 col-4 d-flex justify-content-center">
+                    <a href="add-item.php" class="btn btn-success w-75">Novo Item</a>
+                </div>
+            </div>
         <form>
             <div class="row justify-content-center">
                 <div class="col-6 col-md-8 col-lg-10">
@@ -51,12 +58,32 @@ require('../auth.php');
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="offset-lg-10 offset-md-9 offset-8 col-auto mt-3">
-                    <a href="add-item.php" class="btn btn-success ms-lg-5">Novo Item</a>
-                </div>
-            </div>
         </form>
+        <div class="container border mt-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($produtos)){
+                        echo "<tr><td colspan='4' class='fs-5 fw-normal'>Nenhum produto cadastrado</td></tr>";
+                    }?>
+                    <?php foreach ($produtos as $produto): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($produto['id']); ?></td>
+                        <td><?php echo htmlspecialchars($produto['nome']); ?></td>
+                        <td><?php echo htmlspecialchars($produto['descricao']); ?></td>
+                        <td><?php echo htmlspecialchars($produto['quantidade']); ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </main>
     <script src="../bootstrap.bundle.min.js"></script>
 </body>

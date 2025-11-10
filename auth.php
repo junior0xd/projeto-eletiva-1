@@ -5,7 +5,7 @@ if (empty($_SESSION['acesso'])) {
     exit();
 } 
 if (isset($_SESSION['ultimo_acesso'])) {
-    $tempo_limite = 30 * 60; // 30 minutos em segundos
+    $tempo_limite = 10 * 60; // 10 minutos em segundos
     //testado e funcionando
     if (time() - $_SESSION['ultimo_acesso'] > $tempo_limite) {
         session_unset();
