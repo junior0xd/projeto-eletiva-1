@@ -1,12 +1,6 @@
 <?php
 session_start();
 require('../echo-out.php');
-        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
-            echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
-        }
-        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['nao_logado'])) {
-            echoAlertaDanger('Você precisa estar logado para acessar essa página.');
-        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
             $cadastro = $_POST['cadastro'];
@@ -48,10 +42,17 @@ require('../echo-out.php');
             <h1 class="fs-4">ESF VIDA NOVA</h1>
             <h2 class="fs-6 mt-3">Entrada</h2>
         </div>
+        
         <?php if($senha_invalida && !$usuario_nao_localizado){ 
             echoAlertaWarning('Cadastro ou senha inválidos.');
         } elseif($usuario_nao_localizado){
             echoAlertaDanger('Cadastro não localizado.');
+        }
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['sessao_expirada'])) {
+            echoAlertaWarning('Sua sessão expirou. Por favor, faça login novamente.');
+        }
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['nao_logado'])) {
+            echoAlertaDanger('Você precisa estar logado para acessar essa página.');
         }?>
         <form action="login.php" method="POST">
             <div class="form-floating mb-1">

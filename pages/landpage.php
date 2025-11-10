@@ -1,6 +1,19 @@
 <?php
 require('../auth.php');
 require('../database/conexao.php');
+require('../echo-out.php');
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $nome_produto = $_POST['nome_produto'];
+    $quantidade_produto = $_POST['quantidade_produto'];
+    try {
+        $stmt = $pdo->prepare("INSERT INTO produto (nome, quantidade) VALUES (?, ?)");
+        if($stmt->execute([$nome_produto, $quantidade_produto])){
+            $produto_adicionado = true;
+        }
+    } catch (Exception $e) {
+        echo("Ocorreu um erro ao adicionar um novo produto: " . $e->getMessage());
+    }
+}
 require('../recuperar_produtos.php');
 ?>
 <!DOCTYPE html>
@@ -74,12 +87,12 @@ require('../recuperar_produtos.php');
                     <?php if (empty($produtos)){
                         echo "<tr><td colspan='4' class='fs-5 fw-normal'>Nenhum produto cadastrado</td></tr>";
                     }?>
-                    <?php foreach ($produtos as $produto): ?>
+                    <?php foreach ($produtos as $prod): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($produto['id']); ?></td>
-                        <td><?php echo htmlspecialchars($produto['nome']); ?></td>
-                        <td><?php echo htmlspecialchars($produto['descricao']); ?></td>
-                        <td><?php echo htmlspecialchars($produto['quantidade']); ?></td>
+                        <td><?= $prod['id']; ?></td>
+                        <td><?= $prod['nome']; ?></td>
+                        <td><?= $prod['descricao']; ?></td>
+                        <td><?= $prod['quantidade']; ?></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
