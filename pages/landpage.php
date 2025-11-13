@@ -6,9 +6,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $nome_produto = $_POST['nome_produto'];
     $quantidade_produto = $_POST['quantidade_produto'];
     try {
-        $stmt = $pdo->prepare("INSERT INTO produto (nome, quantidade) VALUES (?, ?)");
-        if($stmt->execute([$nome_produto, $quantidade_produto])){
+        $stmt_checar = $pdo->prepare("SELECT COUNT(*) FROM produto WHERE nome = :nome_produto");
+        $stmt_checar->bindParam(":nome_produto", $nome_produto, PDO::PARAM_STR);
+        $stmt_checar->execute();
+        $contador = $stmt_checar->fetchColumn();
+        if($contador > 0){
+            //O produto já existe no estoque
+            $produto_existe = true;
+        } else{
+            $stmt = $pdo->prepare("INSERT INTO produto (nome, quantidade) VALUES (?, ?)");
+            if($stmt->execute([$nome_produto, $quantidade_produto])){
             $produto_adicionado = true;
+            
+        }
         }
     } catch (Exception $e) {
         echo("Ocorreu um erro ao adicionar um novo produto: " . $e->getMessage());
@@ -54,6 +64,7 @@ require('../recuperar_produtos.php');
             </div>
         <form>
             <div class="row justify-content-center">
+                <?php if($produto_existe){echoAlertaWarning("Produto já existe no estoque");}?>
                 <div class="col-6 col-md-8 col-lg-10">
                     <div class="input-group text-white mt-2">
                         <span class="input-group-text">
