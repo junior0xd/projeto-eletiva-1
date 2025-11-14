@@ -70,7 +70,7 @@ require('../recuperar_produtos.php');
                         <span class="input-group-text">
                             <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
                         </span>
-                    <input type="text" class="form-control fw-medium" placeholder="Procurar...">
+                    <input type="text" class="form-control fw-medium" placeholder="Procurar..." name="produto_procurado" id="produto_procurado">
                     </div>
                 </div>
                 <div class="col-auto mt-2">
@@ -78,8 +78,68 @@ require('../recuperar_produtos.php');
                     <input class="btn btn-outline-info ms-1" type="button" value="Filtros" data-bs-toggle="collapse" data-bs-target="#filtros">
                 </div>
                 <div class="collapse" id="filtros">
-                    <div class="card card-body mt-3 bg-black bg-opacity-10 border-secondary">
-                        Filtros de busca (em construção)
+                    <div class=" offset-sm-8 card card-body mt-3 bg-black bg-opacity-10 border-secondary">
+                        <form action="">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col">Tipo</th>
+                                        <th class="text-center" scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" name="switchEnfermagem" id="switchEnfermagem">
+                                                <label class="form-check-label" for="switchEnfermagem">
+                                                    Enfermagem
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" role="switch" name="checkboxVencidos" id="checkboxVencidos">
+                                                <label class="form-check-label" for="checkboxVencidos">
+                                                    Vencidos
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" name="switchEscritorio" id="switchEscritorio">
+                                                <label for="switchEscritorio">
+                                                    Escritório
+                                                </label>
+                                            </div>
+                                        </th>
+                                         <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" role="switch" name="checkboxBaixoEstoque" id="checkboxBaixoEstoque">
+                                                <label class="form-check-label" for="checkboxBaixoEstoque">
+                                                    Baixo Estoque
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                        </th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" role="switch" name="checkboxProximosVencimento" id="checkboxProximosVencimento">
+                                                <label class="form-check-label" for="checkboxProximosVencimento">
+                                                    Próximos a vencer
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-info align-self-end">Filtrar</button>
+                        </form>
                     </div>
                 </div>
             </div>
