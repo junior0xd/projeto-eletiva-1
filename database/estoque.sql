@@ -14,6 +14,6 @@ CREATE TABLE IF NOT EXISTS produto(
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     quantidade INT NOT NULL,
-    data_validade TIMESTAMP,
+    data_validade DATE,
     data_adicionado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
