@@ -5,7 +5,7 @@ Este é o repositório do projeto referente a matéria Programação Web
 1. Adicionar Modal no Botão de Filtros (OK)
 2. Adicionar Modal para Novos Produtos (OK)
 3. Melhorar a Responsividade do Site (Mais ou menos)
-4. Adicionar Página de Perfil do Usuário
+4. Adicionar Página de Perfil do Usuário 
 5. Adicionar Página de Detalhes do Produto
 
 # Problemas
