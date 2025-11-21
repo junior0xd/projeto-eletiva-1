@@ -31,7 +31,7 @@ require('../head-navbar.php');
         <div class="offset-lg-10 offset-md-8 offset-8 col-lg-2 mt-3 col-md-4 col-4 d-flex justify-content-center">
             <a href="add-item.php" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#adicionar_produtos">Novo Item</a>
         </div>
-        <?php require('../adicionar_produtos_modal.php') ?>
+        <?php require('adicionar_produtos_modal.php') ?>
     </div>
     <form>
         <div class="row justify-content-center">
