@@ -5,6 +5,7 @@ require('../funcoes/echo-out.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_produto = $_POST['nome_produto'];
     $quantidade_produto = $_POST['quantidade_produto'];
+    $categoria_produto = $_POST['categoria_produto'];
     try {
         $stmt_checar = $pdo->prepare("SELECT COUNT(*) FROM produto WHERE nome = :nome_produto");
         $stmt_checar->bindParam(":nome_produto", $nome_produto, PDO::PARAM_STR);
@@ -14,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //O produto já existe no estoque
             $produto_existe = true;
         } else {
-            $stmt = $pdo->prepare("INSERT INTO produto (nome, quantidade) VALUES (?, ?)");
-            if ($stmt->execute([$nome_produto, $quantidade_produto])) {
+            $stmt = $pdo->prepare("INSERT INTO produto (nome, quantidade, categoria_id) VALUES (?, ?, ?)");
+            if ($stmt->execute([$nome_produto, $quantidade_produto, $categoria_produto])) {
                 $produto_adicionado = true;
             }
         }
@@ -23,7 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo ("Ocorreu um erro ao adicionar um novo produto: " . $e->getMessage());
     }
 }
-require('../funcoes/recuperar_produtos.php');
+require('../funcoes/produtos.php');
+$gerenciar_produtos = new Produto($pdo);
+$produtos = $gerenciar_produtos->recuperar_produtos();
+$categorias = $gerenciar_produtos->recuperar_categorias();
 require('head-navbar.php');
 ?>
 <main class="container w-100 mt-4">
@@ -31,7 +35,7 @@ require('head-navbar.php');
         <div class="offset-lg-10 offset-md-8 offset-8 col-lg-2 mt-3 col-md-4 col-4 d-flex justify-content-center">
             <a href="add-item.php" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#adicionar_produtos">Novo Item</a>
         </div>
-        <?php require('adicionar_produtos_modal.php') ?>
+        <?php require('modal_produtos.php') ?>
     </div>
     <form>
         <div class="row justify-content-center">
@@ -130,9 +134,9 @@ require('head-navbar.php');
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($produtos)) {
-                    echo "<tr><td colspan='4' class='fs-5 fw-normal'>Nenhum produto cadastrado</td></tr>";
-                } ?>
+                <?php if (empty($produtos)) {?>
+                    <tr><td colspan='4' class='fs-5 fw-normal'>Nenhum produto cadastrado</td></tr>
+                <?php } ?>
                 <?php foreach ($produtos as $prod): ?>
                     <tr>
                         <td><?= $prod['id']; ?></td>
