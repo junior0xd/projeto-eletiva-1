@@ -2,30 +2,17 @@
 require('../funcoes/auth.php');
 require('../database/conexao.php');
 require('../funcoes/echo-out.php');
+require('../funcoes/produtos.php');
+$gerenciar_produtos = new Produto($pdo);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_produto = $_POST['nome_produto'];
     $quantidade_produto = $_POST['quantidade_produto'];
     $categoria_produto = $_POST['categoria_produto'];
-    try {
-        $stmt_checar = $pdo->prepare("SELECT COUNT(*) FROM produto WHERE nome = :nome_produto");
-        $stmt_checar->bindParam(":nome_produto", $nome_produto, PDO::PARAM_STR);
-        $stmt_checar->execute();
-        $contador = $stmt_checar->fetchColumn();
-        if ($contador > 0) {
-            //O produto já existe no estoque
-            $produto_existe = true;
-        } else {
-            $stmt = $pdo->prepare("INSERT INTO produto (nome, quantidade, categoria_id) VALUES (?, ?, ?)");
-            if ($stmt->execute([$nome_produto, $quantidade_produto, $categoria_produto])) {
-                $produto_adicionado = true;
-            }
-        }
-    } catch (Exception $e) {
-        echo ("Ocorreu um erro ao adicionar um novo produto: " . $e->getMessage());
-    }
+    $adicionou_produto = $gerenciar_produtos->adicionar_produto(
+        nome: $nome_produto, 
+        quantidade: $quantidade_produto, 
+        categoria: $categoria_produto);
 }
-require('../funcoes/produtos.php');
-$gerenciar_produtos = new Produto($pdo);
 $produtos = $gerenciar_produtos->recuperar_produtos();
 $categorias = $gerenciar_produtos->recuperar_categorias();
 require('head-navbar.php');
@@ -39,8 +26,8 @@ require('head-navbar.php');
     </div>
     <form>
         <div class="row justify-content-center">
-            <?php if ($produto_existe) {
-                echoAlertaWarning("Produto já existe no estoque");
+            <?php if ($adicionou_produto === 3) {
+                echoAlertaWarning("Produto já existe no estoque", "alert alert-dismissible alert-warning d-flex align-items-center mb-2 mt-2 col-auto");
             } ?>
             <div class="col-6 col-md-8 col-lg-10">
                 <div class="input-group text-white mt-2">
