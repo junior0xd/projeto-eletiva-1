@@ -16,6 +16,7 @@ require('../echo-out.php');
                     $_SESSION['acesso'] = true;
                     $_SESSION['nome_usuario'] = $usuario['nome'];
                     $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
+                    $_SESSION['cargo'] = $usuario['cargo'];
                     $_SESSION['ultimo_acesso'] = time();
                     header('Location: landpage.php');
                     exit();

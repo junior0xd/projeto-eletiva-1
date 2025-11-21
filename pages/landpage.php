@@ -44,8 +44,13 @@ require('../recuperar_produtos.php');
             </a>
                 <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="ms-2 nav-link active fs-5" aria-current="page" href="#">Início</a>
+                    <a class="ms-2 nav-link fs-6" aria-current="page" href="#">Início</a>
                 </li>
+                <?php if($_SESSION['cargo'] === 60){ ?>
+                <li>
+                    <a class="ms-2 nav-link fs-6" href="gerenciar-usuarios.php">Usuários</a>
+                </li>
+                <?php } ?>
             </ul>
             <div class="navbar-nav ms-auto dropdown">
                 <input class="btn btn-outline-success dropdown-toggle me-2 text-white" value=<?=$_SESSION['nome_usuario']?> type="button" data-bs-toggle="dropdown" aria-expanded="false">
