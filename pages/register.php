@@ -5,7 +5,7 @@ function usuarioJaRegistrado($cadastro, $pdo)
     $stmt->execute(['cadastro' => $cadastro]);
     return $stmt->fetchColumn() > 0;
 }
-require('../echo-out.php');
+require('../funcoes/echo-out.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">

@@ -1,7 +1,7 @@
 <?php
-require('../auth.php');
+require('../funcoes/auth.php');
 require('../database/conexao.php');
-require('../echo-out.php');
+require('../funcoes/echo-out.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_produto = $_POST['nome_produto'];
     $quantidade_produto = $_POST['quantidade_produto'];
@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo ("Ocorreu um erro ao adicionar um novo produto: " . $e->getMessage());
     }
 }
-require('../recuperar_produtos.php');
-require('../head-navbar.php');
+require('../funcoes/recuperar_produtos.php');
+require('head-navbar.php');
 ?>
 <main class="container w-100 mt-4">
     <div class="row">
@@ -145,4 +145,4 @@ require('../head-navbar.php');
         </table>
     </div>
 </main>
-<?php require('../footer.php'); ?>
+<?php require('footer.php'); ?>

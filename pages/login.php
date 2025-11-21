@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../echo-out.php');
+require('../funcoes/echo-out.php');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
             $cadastro = $_POST['cadastro'];

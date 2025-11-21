@@ -1,7 +1,7 @@
 <?php
-require('../auth.php');
-require('../head-navbar.php');
+require('../funcoes/auth.php');
+require('head-navbar.php');
 ?>
 <main>
 </main>
-<?php require('../footer.php'); ?>
+<?php require('footer.php'); ?>
