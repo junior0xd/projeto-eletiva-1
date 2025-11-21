@@ -37,8 +37,8 @@ require('../echo-out.php');
             } else {
                 $hashedSenha = password_hash($senha, PASSWORD_BCRYPT);
                 try {
-                    $stmt = $pdo->prepare("INSERT INTO usuario (nome, cadastro, senha) VALUES (:nome, :cadastro, :senha)");
-                    if ($stmt->execute(['nome' => $nome, 'cadastro' => $cadastro, 'senha' => $hashedSenha])) {
+                    $stmt = $pdo->prepare("INSERT INTO usuario (nome, cadastro, senha, cargo) VALUES (:nome, :cadastro, :senha, :cargo)");
+                    if ($stmt->execute(['nome' => $nome, 'cadastro' => $cadastro, 'senha' => $hashedSenha, 'cargo' => 1])) { //cargo hardcoded
                         echoSucesso('Usuário registrado com sucesso!');
                         sleep(2);
                         header('Location: login.php');
