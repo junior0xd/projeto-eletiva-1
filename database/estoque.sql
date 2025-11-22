@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS produto(
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     quantidade INT NOT NULL,
+    quantidade_minima INT,
     data_validade DATE,
     data_adicionado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     categoria_id INT NOT NULL,
