@@ -13,7 +13,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         quantidade: $quantidade_produto, 
         categoria: $categoria_produto);
 }
-$produtos = $gerenciar_produtos->recuperar_produtos();
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $vencidos = isset($_GET['checkboxVencidos']);
+    if($vencidos){
+        $vencido_check = 'checked';
+    }
+    $proximos_vencimento = isset($_GET['checkboxProximosVencimento']);
+    if ($proximos_vencimento){
+        $proximovenc_check = 'checked';
+    }
+    $baixo_estoque = isset($_GET['checkboxBaixoEstoque']);
+    if($baixo_estoque){
+        $baixo_check = 'checked';
+    }
+    $filtro_enfermagem = isset($_GET['switchEnfermagem']);
+    $filtro_escritorio = isset($_GET['switchEscritorio']);
+    // monta opções e filtros
+    $opcoes = [
+        'vencidos' => $vencidos,
+        'proximos' => $proximos_vencimento,
+        'baixo' => $baixo_estoque,
+    ]; 
+    if($filtro_enfermagem && !$filtro_escritorio){
+        $enf_check = 'checked';
+        $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'ENFERMAGEM', opcoes: $opcoes);
+    } elseif ($filtro_escritorio && !$filtro_enfermagem){
+        $esc_check = 'checked';
+        $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'ESCRITORIO', opcoes: $opcoes);
+    } else {
+        $enf_check = 'checked';
+        $esc_check = 'checked';
+        $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
+    }
+} else {
+    $produtos = [];
+}
 $categorias = $gerenciar_produtos->recuperar_categorias();
 require('head-navbar.php');
 ?>
@@ -22,12 +56,18 @@ require('head-navbar.php');
         <div class="offset-lg-10 offset-md-8 offset-8 col-lg-2 mt-3 col-md-4 col-4 d-flex justify-content-center">
             <a href="add-item.php" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#adicionar_produtos">Novo Item</a>
         </div>
-        <?php require('modal_produtos.php') ?>
+        <?php require('modal_produtos.php'); ?>
     </div>
     <form>
         <div class="row justify-content-center">
             <?php if ($adicionou_produto === 3) {
-                echoAlertaWarning("Produto já existe no estoque", "alert alert-dismissible alert-warning d-flex align-items-center mb-2 mt-2 col-auto");
+                echoAlertaWarning(
+                    mensagem: "Produto já existe no estoque",
+                    classes: "alert alert-dismissible alert-warning d-flex align-items-center mb-2 mt-2 col-auto");
+            } elseif ($adicionou_produto === 1){
+                echoSucesso(
+                    mensagem:"Produto adicionado com sucesso",
+                    classes:"alert alert-dismissible alert-success d-flex align-items-center mb-2 mt-2 col-auto");
             } ?>
             <div class="col-6 col-md-8 col-lg-10">
                 <div class="input-group text-white mt-2">
@@ -57,7 +97,7 @@ require('head-navbar.php');
                                 <tr>
                                     <th scope="row">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="switchEnfermagem" id="switchEnfermagem">
+                                            <input <?= $enf_check ?> class="form-check-input" type="checkbox" role="switch" name="switchEnfermagem" id="switchEnfermagem">
                                             <label class="form-check-label" for="switchEnfermagem">
                                                 Enfermagem
                                             </label>
@@ -65,7 +105,7 @@ require('head-navbar.php');
                                     </th>
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="checkboxVencidos" id="checkboxVencidos">
+                                            <input <?= $vencido_check ?> class="form-check-input" type="checkbox" role="switch" name="checkboxVencidos" id="checkboxVencidos">
                                             <label class="form-check-label" for="checkboxVencidos">
                                                 Vencidos
                                             </label>
@@ -75,7 +115,7 @@ require('head-navbar.php');
                                 <tr>
                                     <th scope="row">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="switchEscritorio" id="switchEscritorio">
+                                            <input <?= $esc_check ?> class="form-check-input" type="checkbox" role="switch" name="switchEscritorio" id="switchEscritorio">
                                             <label for="switchEscritorio">
                                                 Escritório
                                             </label>
@@ -83,7 +123,7 @@ require('head-navbar.php');
                                     </th>
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="checkboxBaixoEstoque" id="checkboxBaixoEstoque">
+                                            <input <?= $baixo_check ?> class="form-check-input" type="checkbox" role="switch" name="checkboxBaixoEstoque" id="checkboxBaixoEstoque">
                                             <label class="form-check-label" for="checkboxBaixoEstoque">
                                                 Baixo Estoque
                                             </label>
@@ -95,7 +135,7 @@ require('head-navbar.php');
                                     </th>
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="checkboxProximosVencimento" id="checkboxProximosVencimento">
+                                            <input <?= $proximovenc_check ?> class="form-check-input" type="checkbox" role="switch" name="checkboxProximosVencimento" id="checkboxProximosVencimento">
                                             <label class="form-check-label" for="checkboxProximosVencimento">
                                                 Próximos a vencer
                                             </label>
@@ -114,10 +154,10 @@ require('head-navbar.php');
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nome</th>
-                    <th>Descrição</th>
                     <th>Quantidade</th>
+                    <th>Validade</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,10 +166,10 @@ require('head-navbar.php');
                 <?php } ?>
                 <?php foreach ($produtos as $prod): ?>
                     <tr>
-                        <td><?= $prod['id']; ?></td>
                         <td><?= $prod['nome']; ?></td>
-                        <td><?= $prod['descricao']; ?></td>
                         <td><?= $prod['quantidade']; ?></td>
+                        <td><?= $prod['data_validade']; ?></td>
+                        <td><button type="button" class="btn btn-outline-info btn-sm">Detalhes</button></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

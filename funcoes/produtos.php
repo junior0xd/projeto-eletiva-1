@@ -25,11 +25,44 @@ class Produto
         return 2;
     }
     }
-    public function recuperar_produtos()
+    public function recuperar_produtos($filtro_tipo, $opcoes = [])
     {
+        $produtos = [];
         try {
-            $stmt = $this->pdo->query("SELECT * FROM produto ORDER BY nome");
-            $produtos = $stmt->fetchAll();
+            $condicoes = [];
+            $parametros = [];
+            
+            if ($filtro_tipo === 'ENFERMAGEM'){
+                $condicoes[] = 'categoria_id = :categoria_id';
+                $parametros[':categoria_id'] = 1;
+            } elseif ($filtro_tipo === 'ESCRITORIO'){
+                $condicoes[] = 'categoria_id = :categoria_id';
+                $parametros[':categoria_id'] = 2; 
+            }
+            //vencidos
+            if (!empty($opcoes['vencidos'])) {
+                $condicoes[] = 'data_validade < CURDATE()';
+            }
+            // próximos a vencer
+            if (!empty($opcoes['proximos'])) {
+                $condicoes[] = 'data_validade BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)';
+            }
+            // baixo estoque
+            if (!empty($opcoes['baixo'])) {
+                $condicoes[] = 'quantidade <= :qtd_minima';
+                $parametros[':qtd_minima'] = 5;
+            }
+
+            $sql = 'SELECT * FROM produto';
+            if (count($condicoes) > 0){
+                $sql .= ' WHERE ' . implode(' AND ', $condicoes);
+            }
+            $sql .= ' ORDER BY nome';
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($parametros);
+            $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            
         } catch (Exception $e) {
             echo "Erro ao recuperar informações: " . $e->getMessage();
         }
