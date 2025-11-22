@@ -15,8 +15,11 @@
                 </div>
             </a>
                 <ul class="navbar-nav me-auto">
+               <li class="nav-item">
+                    <a class="ms-2 nav-link fs-6" aria-current="page" href="landpage.php">Registrar</a>
+                </li>
                 <li class="nav-item">
-                    <a class="ms-2 nav-link fs-6" aria-current="page" href="landpage.php">Início</a>
+                    <a class="ms-2 nav-link fs-6" aria-current="page" href="landpage.php">Estoque</a>
                 </li>
                 <?php if($_SESSION['cargo'] === 60){ ?>
                 <li>
