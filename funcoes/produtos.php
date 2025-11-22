@@ -31,7 +31,7 @@ class Produto
         try {
             $condicoes = [];
             $parametros = [];
-            
+
             if ($filtro_tipo === 'ENFERMAGEM'){
                 $condicoes[] = 'categoria_id = :categoria_id';
                 $parametros[':categoria_id'] = 1;
@@ -39,13 +39,18 @@ class Produto
                 $condicoes[] = 'categoria_id = :categoria_id';
                 $parametros[':categoria_id'] = 2; 
             }
+            //procurar produto
+            if(!empty($opcoes['item_procurado'])){
+                $condicoes[] = 'nome LIKE :item_procurado';
+                $parametros[':item_procurado'] = $opcoes['item_procurado'] . '%';
+            }
             //vencidos
             if (!empty($opcoes['vencidos'])) {
                 $condicoes[] = 'data_validade < CURDATE()';
             }
             // próximos a vencer
             if (!empty($opcoes['proximos'])) {
-                $condicoes[] = 'data_validade BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)';
+                $condicoes[] = 'data_validade BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)';
             }
             // baixo estoque
             if (!empty($opcoes['baixo'])) {

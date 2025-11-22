@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         categoria: $categoria_produto);
 }
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $item_procurado = $_GET['produto_procurado'];
     $vencidos = isset($_GET['checkboxVencidos']);
     if($vencidos){
         $vencido_check = 'checked';
@@ -30,6 +31,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $filtro_escritorio = isset($_GET['switchEscritorio']);
     // monta opções e filtros
     $opcoes = [
+        'item_procurado' => $item_procurado,
         'vencidos' => $vencidos,
         'proximos' => $proximos_vencimento,
         'baixo' => $baixo_estoque,
