@@ -28,7 +28,7 @@ class Produto
     public function recuperar_produtos()
     {
         try {
-            $stmt = $this->pdo->query("SELECT * FROM produto");
+            $stmt = $this->pdo->query("SELECT * FROM produto ORDER BY nome");
             $produtos = $stmt->fetchAll();
         } catch (Exception $e) {
             echo "Erro ao recuperar informações: " . $e->getMessage();
