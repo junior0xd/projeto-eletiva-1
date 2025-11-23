@@ -17,7 +17,7 @@
             </a>
                 <ul class="navbar-nav me-auto">
                <li class="nav-item">
-                    <a class="ms-2 nav-link fs-6" aria-current="page" href="landpage.php">Registrar</a>
+                    <a class="ms-2 nav-link fs-6" aria-current="page" href="registrar_estoque.php">Registrar</a>
                 </li>
                 <li class="nav-item">
                     <a class="ms-2 nav-link fs-6" aria-current="page" href="estoque.php">Estoque</a>
