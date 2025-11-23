@@ -173,11 +173,32 @@ require('head-navbar.php');
                         <td><?= $prod['nome']; ?></td>
                         <td><?= $prod['quantidade']; ?></td>
                         <td><?= $prod['data_validade']; ?></td>
-                        <td><button type="button" class="btn btn-outline-info btn-sm">Detalhes</button></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'>Detalhes</button>
+                            <button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'>Editar</button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php include('modal_editar_produto.php'); ?>
     </div>
+    <?php include('modal_detalhe_produto.php'); ?>
 </main>
 <?php require('footer.php'); ?>
+<script>
+document.getElementById('detalheProduto').addEventListener('show.bs.modal', (e) => {
+    const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
+    document.getElementById('detalheNome').textContent = produto.nome;
+    //document.getElementById('detalheQtd').textContent = produto.quantidade;
+    //document.getElementById('detalheValidade').textContent = produto.data_validade;
+    });
+document.getElementById('editarProduto').addEventListener('show.bs.modal', (e) => {
+    const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
+    console.log(produto.nome);
+    document.getElementById('editarNomeProduto').textContent = produto.nome;
+    //document.getElementById('editarId').value = produto.id;
+    //document.getElementById('editarNome').value = produto.nome;
+    //document.getElementById('editarQtd').value = produto.quantidade;
+    });
+</script>
