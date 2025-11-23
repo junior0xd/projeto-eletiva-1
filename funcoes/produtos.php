@@ -2,7 +2,6 @@
 class Produto
 {
     public function __construct(protected PDO $pdo) {}
-    
     public function adicionar_produto($nome, $quantidade, $categoria, $validade = null) {
         try {
         $stmt_checar = $this->pdo->prepare("SELECT COUNT(*) FROM produto WHERE nome = :nome");
@@ -64,6 +63,34 @@ class Produto
             return 2;
         }
     }
+    public function atualizar_quantidade_entrada($id, $quantidade){
+        try {
+            $stmt = $this->pdo->prepare(
+                'UPDATE produto SET quantidade = quantidade + :quantidade WHERE id = :id');
+            $stmt->execute(array(
+                ':id' => $id,
+                ':quantidade' => $quantidade
+            ));
+            return 1;
+            } catch (Exception $e) {
+                echo("Ocorreu um erro ao atualizar a quantidade do produto: " . $e->getMessage());
+                return 2;
+            }
+    }
+    public function atualizar_quantidade_saida($id, $quantidade){
+        try {
+            $stmt = $this->pdo->prepare(
+                'UPDATE produto SET quantidade = quantidade - :quantidade WHERE id = :id');
+            $stmt->execute(array(
+                ':id' => $id,
+                ':quantidade' => $quantidade
+            ));
+            return 1;
+            } catch (Exception $e) {
+                echo("Ocorreu um erro ao atualizar a quantidade do produto: " . $e->getMessage());
+                return 2;
+            }
+    }
     public function recuperar_produtos($filtro_tipo, $opcoes = [])
     {
         $produtos = [];
@@ -98,7 +125,6 @@ class Produto
             }
             //formato da data
             $parametros[':formato_data'] = "%d/%m/%Y";
-
             $sql = 'SELECT *,
                         DATE_FORMAT(data_validade, :formato_data) as data_validade,
                         DATE_FORMAT(data_validade, "%Y-%m-%d") as data_validade_iso 
@@ -107,7 +133,6 @@ class Produto
                 $sql .= ' WHERE ' . implode(' AND ', $condicoes);
             }
             $sql .= ' ORDER BY nome';
-
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($parametros);
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
