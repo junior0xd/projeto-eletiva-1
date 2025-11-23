@@ -6,9 +6,9 @@ Este é o repositório do projeto referente a matéria Programação Web
 2. Adicionar Modal para Novos Produtos (OK)
 3. Melhorar a Responsividade do Site (Mais ou menos)
 4. Adicionar Página de Perfil do Usuário 
-5. Adicionar Página de Detalhes do Produto
-6. Página para gerenciamento de usuários
-7. Página para gerenciamento de categoria
+5. Adicionar Página de Detalhes do Produto 
+6. Página para gerenciamento de usuários 
+7. Página para gerenciamento de categoria (HARDCODED)
 
 # Problemas
 
