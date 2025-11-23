@@ -57,8 +57,10 @@ class Produto
                 $condicoes[] = 'quantidade <= :qtd_minima';
                 $parametros[':qtd_minima'] = 5;
             }
+            //formato da data
+            $parametros[':formato_data'] = "%d/%m/%Y";
 
-            $sql = 'SELECT * FROM produto';
+            $sql = 'SELECT *, DATE_FORMAT(data_validade, :formato_data) as data_validade FROM produto';
             if (count($condicoes) > 0){
                 $sql .= ' WHERE ' . implode(' AND ', $condicoes);
             }
