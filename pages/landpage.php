@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
     }
 } else {
-    $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
+    $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS');
 }
 $categorias = $gerenciar_produtos->recuperar_categorias();
 require('head-navbar.php');
