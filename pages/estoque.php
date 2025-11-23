@@ -5,15 +5,27 @@ require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
 $gerenciar_produtos = new Produto($pdo);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $produto_id = $_POST['produto_id'];
     $nome_produto = $_POST['nome_produto'];
     $quantidade_produto = $_POST['quantidade_produto'];
     $categoria_produto = $_POST['categoria_produto'];
     $validade_produto = $_POST['validade_produto'];
-    $adicionou_produto = $gerenciar_produtos->adicionar_produto(
+    $tipo_solicitacao = $_POST['tipo_solicitacao'];
+    if($tipo_solicitacao === 'criar'){
+        $adicionou_produto = $gerenciar_produtos->adicionar_produto(
         nome: $nome_produto, 
         quantidade: $quantidade_produto, 
         categoria: $categoria_produto,
         validade: $validade_produto);
+    } elseif ($tipo_solicitacao == 'atualizar'){
+        $atualizou_produto = $gerenciar_produtos->atualizar_produto(
+            id: $produto_id,
+            nome: $nome_produto, 
+            quantidade: $quantidade_produto, 
+            categoria: $categoria_produto,
+            validade: $validade_produto);
+    }
+
 }
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $item_procurado = $_GET['produto_procurado'];
@@ -72,7 +84,11 @@ require('head-navbar.php');
                 echoSucesso(
                     mensagem:"Produto adicionado com sucesso",
                     classes:"alert alert-dismissible alert-success d-flex align-items-center mb-2 mt-2 col-auto");
-            } ?>
+            } elseif ($atualizou_produto === 1){
+                echoSucesso(
+                    mensagem:"Produto atualizado com sucesso",
+                    classes:"alert alert-dismissible alert-success d-flex align-items-center mb-2 mt-2 col-auto");
+            }?>
             <div class="col-6 col-md-8 col-lg-10">
                 <div class="input-group text-white mt-2">
                     <span class="input-group-text">
@@ -197,7 +213,7 @@ document.getElementById('editarProduto').addEventListener('show.bs.modal', (e) =
     const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
     console.log(produto.nome);
     document.getElementById('editarNomeProduto').textContent = produto.nome;
-    //document.getElementById('editarId').value = produto.id;
+    document.getElementById('editarProdutoId').value = produto.id;
     //document.getElementById('editarNome').value = produto.nome;
     //document.getElementById('editarQtd').value = produto.quantidade;
     });
