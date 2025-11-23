@@ -99,7 +99,10 @@ class Produto
             //formato da data
             $parametros[':formato_data'] = "%d/%m/%Y";
 
-            $sql = 'SELECT *, DATE_FORMAT(data_validade, :formato_data) as data_validade FROM produto';
+            $sql = 'SELECT *,
+                        DATE_FORMAT(data_validade, :formato_data) as data_validade,
+                        DATE_FORMAT(data_validade, "%Y-%m-%d") as data_validade_iso 
+                        FROM produto';
             if (count($condicoes) > 0){
                 $sql .= ' WHERE ' . implode(' AND ', $condicoes);
             }
