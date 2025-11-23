@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 <form action="estoque.php" method="post">
+                    <input type="hidden" name="tipo_solicitacao" value="criar">
                     <div class="mb-2">
                         <label for="nome_produto" class="col-form-label">Nome do Produto</label>
                         <input type="text" class="form-control" id="nome_produto" name="nome_produto" required>
