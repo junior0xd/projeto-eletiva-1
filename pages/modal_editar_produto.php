@@ -11,15 +11,15 @@
                     <input type="hidden" id="editarProdutoId" name="produto_id" value="">
                     <div class="mb-2">
                         <label for="nome_produto" class="col-form-label">Nome do Produto</label>
-                        <input type="text" class="form-control" id="nome_produto" name="nome_produto">
+                        <input type="text" class="form-control" id="editarNomeProduto2" name="nome_produto">
                     </div>
                     <div class="mb-2">
                         <label for="quantidade_produto" class="col-form-label">Quantidade</label>
-                        <input type="number" class="form-control" id="quantidade_produto" name="quantidade_produto">
+                        <input type="number" class="form-control" id="editarQuantidadeProduto" name="quantidade_produto">
                     </div>
                     <div class="mb-2">
                         <label for="validade_produto" class="col-form-label">Validade</label>
-                        <input type="date" class="form-control" id="validade_produto" name="validade_produto">
+                        <input type="date" class="form-control" id="editarValidadeProduto" name="validade_produto">
                     </div>
                     <div class="mb-2">
                         <label for="categoria_produto">Categoria</label>

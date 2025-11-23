@@ -211,10 +211,10 @@ document.getElementById('detalheProduto').addEventListener('show.bs.modal', (e) 
     });
 document.getElementById('editarProduto').addEventListener('show.bs.modal', (e) => {
     const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
-    console.log(produto.nome);
     document.getElementById('editarNomeProduto').textContent = produto.nome;
     document.getElementById('editarProdutoId').value = produto.id;
-    //document.getElementById('editarNome').value = produto.nome;
-    //document.getElementById('editarQtd').value = produto.quantidade;
+    document.getElementById('editarNomeProduto2').value = produto.nome;
+    document.getElementById('editarValidadeProduto').value = produto.data_validade_iso;
+    document.getElementById('editarQuantidadeProduto').value = produto.quantidade;
     });
 </script>
