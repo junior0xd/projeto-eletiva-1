@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../select2.min.css">
+    <link rel="stylesheet" href="../select2-bootstrap-5-theme.min.css">
+    <link rel="stylesheet" href="../custom.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Vida Nova: Estoque</title>
 </head>
