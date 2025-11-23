@@ -25,6 +25,45 @@ class Produto
         return 2;
     }
     }
+    public function atualizar_produto($id, $nome = "", $quantidade = "", $categoria = "", $validade = ""){
+        //carrega as informações do produto antes de atualizar
+        $stmt_anterior = $this->pdo->prepare('SELECT * FROM produto WHERE id = :id');
+        $stmt_anterior->bindParam(':id', $id);
+        $stmt_anterior->execute();
+        $produto = $stmt_anterior->fetch();
+        if($nome == "" ){
+            $nome = $produto['nome'];
+        }
+        if($quantidade == ""){
+            $quantidade = $produto['quantidade'];
+        }
+        if($categoria == ""){
+            $categoria = $produto['categoria_id'];
+        }
+        if($validade == ""){
+            $validade = $produto['data_validade'];
+        }
+        try {
+        $stmt = $this->pdo->prepare(
+            'UPDATE produto SET nome = :nome, 
+                    quantidade = :quantidade, 
+                    categoria_id = :categoria_id, 
+                    data_validade = :data_validade 
+                    WHERE id = :id');
+        $stmt->execute(array(
+            ':id' => $id,
+            ':nome' => $nome,
+            ':quantidade' => $quantidade,
+            ':categoria_id' => $categoria,
+            ':data_validade' => $validade
+        ));
+        return 1;
+        } catch (Exception $e) {
+            echo('val' . $quantidade);
+            echo ("Ocorreu um erro ao atualizar o produto: " . $e->getMessage());
+            return 2;
+        }
+    }
     public function recuperar_produtos($filtro_tipo, $opcoes = [])
     {
         $produtos = [];
