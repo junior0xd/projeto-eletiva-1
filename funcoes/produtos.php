@@ -3,7 +3,7 @@ class Produto
 {
     public function __construct(protected PDO $pdo) {}
     
-    public function adicionar_produto($nome, $quantidade, $categoria) {
+    public function adicionar_produto($nome, $quantidade, $categoria, $validade = null) {
         try {
         $stmt_checar = $this->pdo->prepare("SELECT COUNT(*) FROM produto WHERE nome = :nome");
         $stmt_checar->bindParam(":nome", $nome, PDO::PARAM_STR);
@@ -13,8 +13,8 @@ class Produto
             //produto já existe
             return 3;
         } else {
-            $stmt = $this->pdo->prepare("INSERT INTO produto (nome, quantidade, categoria_id) VALUES (?, ?, ?)");
-            if ($stmt->execute([$nome, $quantidade, $categoria])) {
+            $stmt = $this->pdo->prepare("INSERT INTO produto (nome, quantidade, categoria_id, data_validade) VALUES (?, ?, ?, ?)");
+            if ($stmt->execute([$nome, $quantidade, $categoria, $validade])) {
                 //produto adicionado com sucesso
                 return 1;
             }

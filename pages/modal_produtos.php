@@ -16,9 +16,13 @@
                         <input type="number" class="form-control" id="quantidade_produto" name="quantidade_produto" required>
                     </div>
                     <div class="mb-2">
+                        <label for="validade_produto" class="col-form-label">Validade</label>
+                        <input type="date" class="form-control" id="validade_produto" name="validade_produto">
+                    </div>
+                    <div class="mb-2">
                         <label for="categoria_produto">Categoria</label>
-                        <select class="form-select" name="categoria_produto" id="categoria_produto">
-                            <option>Selecione...</option>
+                        <select class="form-select" name="categoria_produto" id="categoria_produto" required>
+                            <option disabled selected hidden value="" >Selecione...</option>
                             <?php foreach ($categorias as $categoria): ?>
                             <option value="<?= $categoria['id'] ?>"><?= $categoria['nome'] ?></option>
                             <?php endforeach; ?>

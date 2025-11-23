@@ -8,10 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_produto = $_POST['nome_produto'];
     $quantidade_produto = $_POST['quantidade_produto'];
     $categoria_produto = $_POST['categoria_produto'];
+    $validade_produto = $_POST['validade_produto'];
     $adicionou_produto = $gerenciar_produtos->adicionar_produto(
         nome: $nome_produto, 
         quantidade: $quantidade_produto, 
-        categoria: $categoria_produto);
+        categoria: $categoria_produto,
+        validade: $validade_produto);
 }
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $item_procurado = $_GET['produto_procurado'];
@@ -48,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
     }
 } else {
-    $produtos = [];
+    $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
 }
 $categorias = $gerenciar_produtos->recuperar_categorias();
 require('head-navbar.php');
@@ -78,7 +80,7 @@ require('head-navbar.php');
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                         </svg>
                     </span>
-                    <input type="text" class="form-control fw-medium" placeholder="Procurar..." name="produto_procurado" id="produto_procurado">
+                    <input type="search" class="form-control fw-medium" placeholder="Procurar..." name="produto_procurado" id="produto_procurado">
                 </div>
             </div>
             <div class="col-auto mt-2">
