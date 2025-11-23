@@ -18,7 +18,7 @@ require('../funcoes/echo-out.php');
                     $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
                     $_SESSION['cargo'] = $usuario['cargo'];
                     $_SESSION['ultimo_acesso'] = time();
-                    header('Location: landpage.php?switchEnfermagem=on&switchEscritorio=on');
+                    header('Location: estoque.php');
                     exit();
                 } else{
                     $senha_invalida = true;

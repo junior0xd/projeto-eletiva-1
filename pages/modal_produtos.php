@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="landpage.php" method="post">
+                <form action="estoque.php" method="post">
                     <div class="mb-2">
                         <label for="nome_produto" class="col-form-label">Nome do Produto</label>
                         <input type="text" class="form-control" id="nome_produto" name="nome_produto" required>
