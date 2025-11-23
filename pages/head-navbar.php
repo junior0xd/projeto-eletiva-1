@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap.min.css" rel="stylesheet">
-    <title>Land Page</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <title>Vida Nova: Estoque</title>
 </head>
 <body class="">
     <nav class="navbar navbar-expand bg-black bg-opacity-10 navbar-dark px-2 py-3 mt-1">
