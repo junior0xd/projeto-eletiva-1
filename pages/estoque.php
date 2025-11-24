@@ -1,5 +1,8 @@
 <?php
 require('../funcoes/sessao.php');
+require('../funcoes/auth.php');
+Auth::verificar_sessao_ativa();
+define('IN_APP', true);
 require('../database/conexao.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
@@ -70,7 +73,7 @@ require('head-navbar.php');
 <main class="container w-100 mt-4">
     <div class="row">
         <div class="offset-lg-10 offset-md-8 offset-8 col-lg-2 mt-3 col-md-4 col-4 d-flex justify-content-center">
-            <a href="add-item.php" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#adicionar_produtos">Novo Item</a>
+            <button class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#adicionar_produtos">Novo Item</button>
         </div>
         <?php require('modal_produtos.php'); ?>
     </div>
