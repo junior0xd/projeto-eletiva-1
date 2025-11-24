@@ -29,17 +29,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <?php if($produto_atualizado == 1) echoSucesso(mensagem: "Estoque atualizado com sucesso!"); ?>
     <ul class="nav nav-tabs" id="tabsRegistrar">
         <li>
-            <button class="nav-link" id="tabEntrada" data-bs-toggle="tab" data-bs-target="#painelEntrada">Entrada</button>
+            <button class="nav-link active" id="tabEntrada" data-bs-toggle="tab" data-bs-target="#painelEntrada" aria-selected="true" role="tab">Entrada</button>
         </li>
         <li>
             <button class="nav-link" id="tabSaida" data-bs-toggle="tab" data-bs-target="#painelSaida">Saída</button>
         </li>
     </ul>
     <div class="tab-content" id="tabsConteudo">
-        <div class="tab-pane" id="painelEntrada">
+        <div class="tab-pane active show" id="painelEntrada">
             <form action="registrar_estoque.php" method="post">
                 <div class="mb-2">
-                    <label for="registrarEntradaProduto">Item</label>
+                    <label class="mt-3" for="registrarEntradaProduto">Item</label>
                     <input type="hidden" name="action" value="entrada">
                     <select class="form-select" name="produtoId" id="registrarEntradaProduto">
                         <option disabled selected hidden value="">Selecione...</option>
@@ -47,6 +47,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                             <option value="<?= htmlspecialchars($produto['id']) ?>"><?= htmlspecialchars($produto['nome']) ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <h5 class="text-center mt-4">Items Selecionados</h5>
                     <div id="selecionadosContainer" class="mt-3 border rounded-2">
                     </div>
                 </div>
@@ -59,13 +60,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             <form action="registrar_estoque.php" method="post">
                 <div class="mb-2">
                     <input type="hidden" name="action" value="saida">
-                    <label for="registrarSaidaProduto">Item</label>
+                    <label class="mt-3" for="registrarSaidaProduto">Item</label>
                     <select class="form-select" name="produtoId" id="registrarSaidaProduto">
                         <option disabled selected hidden value="">Selecione...</option>
                         <?php foreach ($produtos as $produto): ?>
                             <option value="<?= htmlspecialchars($produto['id']) ?>"><?= htmlspecialchars($produto['nome']) ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <h5 class="text-center mt-4">Items Selecionados</h5>
                     <div id="selecionadosContainerSaida" class="mt-3 border rounded-2">
                     </div>
                 </div>
