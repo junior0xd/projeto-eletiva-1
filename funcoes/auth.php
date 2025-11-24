@@ -23,6 +23,12 @@ class Auth{
         }
         $_SESSION['ultimo_acesso'] = time();
     }
+    public static function verificar_usuario_admin() {
+        if (empty($_SESSION['cargo']) || $_SESSION['cargo'] !== 60) {
+            http_response_code(403);
+            exit('Acesso negado: privilégios insuficientes.');
+        }
+    }
     public static function logout() {
         session_unset();
         session_destroy();
