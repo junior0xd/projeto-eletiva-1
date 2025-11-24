@@ -12,7 +12,18 @@ if (!defined('IN_APP')) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Into the night</p>
+                <div class="mb-2">
+                    <strong>Quantidade:</strong>
+                    <span id="detalheQuantidade">0</span>
+                </div>
+                <div class="mb-2">
+                    <strong>Validade:</strong>
+                    <span id="detalheValidade">00/00/0000</span>
+                </div>
+                <div class="mb-2">
+                    <strong>Categoria:</strong>
+                    <span id="detalheCategoria">Placeholder</span>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

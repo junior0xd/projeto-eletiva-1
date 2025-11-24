@@ -209,8 +209,9 @@ require('head-navbar.php');
 document.getElementById('detalheProduto').addEventListener('show.bs.modal', (e) => {
     const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
     document.getElementById('detalheNome').textContent = produto.nome;
-    //document.getElementById('detalheQtd').textContent = produto.quantidade;
-    //document.getElementById('detalheValidade').textContent = produto.data_validade;
+    document.getElementById('detalheQuantidade').textContent = produto.quantidade;
+    document.getElementById('detalheValidade').textContent = produto.data_validade;
+    document.getElementById('detalheCategoria').textContent = produto.categoria_nome;
     });
 document.getElementById('editarProduto').addEventListener('show.bs.modal', (e) => {
     const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
