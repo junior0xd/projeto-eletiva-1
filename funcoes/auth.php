@@ -1,20 +1,33 @@
 <?php
-session_start();
-session_regenerate_id(true);
-if (empty($_SESSION['acesso'])) {
-    header('Location: login.php?nao_logado=true');
-    exit();
-} 
-if (isset($_SESSION['ultimo_acesso'])) {
-    $tempo_limite = 10 * 60; // 10 minutos em segundos
-    //testado e funcionando
-    if (time() - $_SESSION['ultimo_acesso'] > $tempo_limite) {
+class Auth{
+    public static function gerar_token_csrf() {
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
+
+    public static function verificar_token_csrf($token) {
+        return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+    }
+
+    public static function limpar_token_csrf() {
+        unset($_SESSION['csrf_token']);
+    }
+    public static function verificar_sessao_ativa($tempo_limite = 1800) {
+        if (empty($_SESSION['ultimo_acesso']) || (time() - $_SESSION['ultimo_acesso']) > $tempo_limite) {
+            session_unset();
+            session_destroy();
+            header('Location: login.php?sessao_expirada=true');
+            exit();
+        }
+        $_SESSION['ultimo_acesso'] = time();
+    }
+    public static function logout() {
         session_unset();
         session_destroy();
-        header('Location: login.php?sessao_expirada=true');
+        header('Location: login.php');
         exit();
-    } else {
-        $_SESSION['ultimo_acesso'] = time();
     }
 }
 ?>
