@@ -20,7 +20,7 @@ class Produto
             return 2;
         }
     } catch (Exception $e) {
-        echo ("Ocorreu um erro ao adicionar um novo produto: " . $e->getMessage());
+        error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
         return 2;
     }
     }
@@ -58,8 +58,7 @@ class Produto
         ));
         return 1;
         } catch (Exception $e) {
-            echo('val' . $quantidade);
-            echo ("Ocorreu um erro ao atualizar o produto: " . $e->getMessage());
+            error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
             return 2;
         }
     }
@@ -73,7 +72,7 @@ class Produto
             ));
             return 1;
             } catch (Exception $e) {
-                echo("Ocorreu um erro ao atualizar a quantidade do produto: " . $e->getMessage());
+                error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
                 return 2;
             }
     }
@@ -87,7 +86,7 @@ class Produto
             ));
             return 1;
             } catch (Exception $e) {
-                echo("Ocorreu um erro ao atualizar a quantidade do produto: " . $e->getMessage());
+                error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
                 return 2;
             }
     }
@@ -138,7 +137,7 @@ class Produto
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             
         } catch (Exception $e) {
-            echo "Erro ao recuperar informações: " . $e->getMessage();
+            error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
         }
         return $produtos;
     }
@@ -148,7 +147,7 @@ class Produto
             $stmt = $this->pdo->query("SELECT * from categoria");
             $categorias = $stmt->fetchAll();
         } catch (Exception $e) {
-            echo "Erro ao recuperar informações: " . $e->getMessage();
+            error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
         }
         return $categorias;
     }
