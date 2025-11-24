@@ -36,7 +36,7 @@ require('../funcoes/echo-out.php');
             } elseif (usuarioJaRegistrado($cadastro, $pdo)) {
                 echoAlertaWarning('Cadastro já registrado. Por favor, use outro cadastro.');
             } else {
-                $hashedSenha = password_hash($senha, PASSWORD_BCRYPT);
+                $hashedSenha = password_hash($senha, PASSWORD_BCRYPT, ['cost' => 12]);
                 try {
                     $stmt = $pdo->prepare("INSERT INTO usuario (nome, cadastro, senha, cargo) VALUES (:nome, :cadastro, :senha, :cargo)");
                     if ($stmt->execute(['nome' => $nome, 'cadastro' => $cadastro, 'senha' => $hashedSenha, 'cargo' => 1])) { //cargo hardcoded
@@ -47,7 +47,7 @@ require('../funcoes/echo-out.php');
                         echoAlertaDanger('Falha ao registrar o usuário. Por favor, tente novamente.');
                     }
                 } catch (Exception $e) {
-                    echo 'Error: ' . $e->getMessage();
+                    error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
                 }
             }
         }
