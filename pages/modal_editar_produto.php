@@ -8,7 +8,11 @@ if (!defined('IN_APP')) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editarNomeProduto">Placeholder</h5>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="modal-title fw-bold" id="editarProdutoLabel">Editando: <span class="fs-5 fw-light" id="editarNomeProduto">Placeholder</span></h5>
+                    </div>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
