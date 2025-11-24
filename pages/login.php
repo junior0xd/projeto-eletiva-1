@@ -1,11 +1,12 @@
 <?php
-session_start();
+require('../funcoes/sessao.php');
 require('../funcoes/echo-out.php');
+$senha_invalida = false;
+$usuario_nao_localizado = false;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
             $cadastro = $_POST['cadastro'];
             $senha = $_POST['password'];
-            $csrf_token = bin2hex(random_bytes(32));
             try {
                 $stmt = $pdo->prepare("SELECT * FROM usuario WHERE cadastro = :cadastro");
                 $stmt->execute(['cadastro' => $cadastro]);
@@ -19,7 +20,6 @@ require('../funcoes/echo-out.php');
                     $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
                     $_SESSION['cargo'] = $usuario['cargo'];
                     $_SESSION['ultimo_acesso'] = time();
-                    $_SESSION['csrf_token'] = $csrf_token;
                     header('Location: estoque.php');
                     exit();
                 } else{
