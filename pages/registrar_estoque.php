@@ -103,7 +103,6 @@ require('footer.php');
     // Return `null` if the term should not be displayed
     return null;
 }
-
 $(document).ready(function() {
     //entrada de produtos
     $("#registrarEntradaProduto").select2({
@@ -133,7 +132,7 @@ $(document).ready(function() {
             // input quantidade
             container.append($('<input>', { type: 'number', name: 'quantidades[]', class: 'form-control', min: 0, value: 0, style: 'width:7.5rem' }));
             // botão remover
-            container.append($('<button>', { type: 'button', class: 'btn btn-sm btn-danger btn-remover' }).text('Remover'));
+            container.append($('<button>', { type: 'button', class: 'btn btn-sm btn-secondary btn-remover' }).html("<?= iconeLixeiraJquery() ?>"));
             $('#selecionadosContainer').append(container);
         }
     });
@@ -191,7 +190,7 @@ $(document).ready(function() {
             // input quantidade
             container.append($('<input>', { type: 'number', name: 'quantidades[]', class: 'form-control', min: 0, value: 0, style: 'width:7.5rem' }));
             // botão remover
-            container.append($('<button>', { type: 'button', class: 'btn btn-sm btn-danger btn-remover' }).text('Remover'));
+            container.append($('<button>', { type: 'button', class: 'btn btn-sm btn-secondary btn-remover' }).html("<?= iconeLixeiraJquery() ?>"));
             $('#selecionadosContainerSaida').append(container);
         }
     });
