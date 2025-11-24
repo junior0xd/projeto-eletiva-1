@@ -1,3 +1,9 @@
+<?php
+if (!defined('IN_APP')) {
+    http_response_code(403);
+    exit('Acesso proibido');
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
 <head>

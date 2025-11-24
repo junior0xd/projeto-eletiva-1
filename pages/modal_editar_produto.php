@@ -1,3 +1,9 @@
+<?php
+if (!defined('IN_APP')) {
+    http_response_code(403);
+    exit('Acesso proibido');
+}
+?>
 <div class="modal fade" id="editarProduto" tabindex="-1" aria-labelledby="editarProdutoLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
