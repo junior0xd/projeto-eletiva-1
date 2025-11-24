@@ -1,5 +1,5 @@
 <?php
-require('../funcoes/auth.php');
+require('../funcoes/sessao.php');
 require('../database/conexao.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
