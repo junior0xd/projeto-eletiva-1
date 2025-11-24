@@ -5,6 +5,7 @@ require('../funcoes/echo-out.php');
             require('../database/conexao.php');
             $cadastro = $_POST['cadastro'];
             $senha = $_POST['password'];
+            $csrf_token = bin2hex(random_bytes(32));
             try {
                 $stmt = $pdo->prepare("SELECT * FROM usuario WHERE cadastro = :cadastro");
                 $stmt->execute(['cadastro' => $cadastro]);
@@ -18,13 +19,14 @@ require('../funcoes/echo-out.php');
                     $_SESSION['cadastro_usuario'] = $usuario['cadastro'];
                     $_SESSION['cargo'] = $usuario['cargo'];
                     $_SESSION['ultimo_acesso'] = time();
+                    $_SESSION['csrf_token'] = $csrf_token;
                     header('Location: estoque.php');
                     exit();
                 } else{
                     $senha_invalida = true;
                 }
             } catch (Exception $e) {
-                echo 'Error: ' . $e->getMessage();
+                error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
             }
         }
 ?>
