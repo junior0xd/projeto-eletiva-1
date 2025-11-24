@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <select class="form-select" name="produtoId" id="registrarEntradaProduto">
                         <option disabled selected hidden value="">Selecione...</option>
                         <?php foreach ($produtos as $produto): ?>
-                            <option value="<?= $produto['id'] ?>"><?= $produto['nome'] ?></option>
+                            <option value="<?= htmlspecialchars($produto['id']) ?>"><?= htmlspecialchars($produto['nome']) ?></option>
                         <?php endforeach; ?>
                     </select>
                     <div id="selecionadosContainer" class="mt-3 border rounded-2">
@@ -63,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <select class="form-select" name="produtoId" id="registrarSaidaProduto">
                         <option disabled selected hidden value="">Selecione...</option>
                         <?php foreach ($produtos as $produto): ?>
-                            <option value="<?= $produto['id'] ?>"><?= $produto['nome'] ?></option>
+                            <option value="<?= htmlspecialchars($produto['id']) ?>"><?= htmlspecialchars($produto['nome']) ?></option>
                         <?php endforeach; ?>
                     </select>
                     <div id="selecionadosContainerSaida" class="mt-3 border rounded-2">

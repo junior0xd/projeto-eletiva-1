@@ -32,7 +32,7 @@ if (!defined('IN_APP')) {
                         <select class="form-select" name="categoria_produto" id="categoria_produto">
                             <option disabled selected hidden value="" >Selecione...</option>
                             <?php foreach ($categorias as $categoria): ?>
-                            <option value="<?= $categoria['id'] ?>"><?= $categoria['nome'] ?></option>
+                            <option value="<?= htmlspecialchars($categoria['id']) ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
