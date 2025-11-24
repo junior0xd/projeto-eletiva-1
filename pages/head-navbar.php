@@ -32,7 +32,7 @@
                 <?php } ?>
             </ul>
             <div class="navbar-nav ms-auto dropdown">
-                <input class="btn btn-outline-success dropdown-toggle me-2 text-white" value=<?=$_SESSION['nome_usuario']?> type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <input class="btn btn-outline-success dropdown-toggle me-2 text-white" value="<?=htmlspecialchars($_SESSION['nome_usuario'])?>" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu w-100 dropdown-menu-end dropdown-menu-dark dropdown-menu-start">
                     <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
                     <li><a class="dropdown-item" href="logout.php">Sair</a></li>
