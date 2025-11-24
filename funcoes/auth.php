@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_regenerate_id();
+session_regenerate_id(true);
 if (empty($_SESSION['acesso'])) {
     header('Location: login.php?nao_logado=true');
     exit();
