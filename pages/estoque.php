@@ -189,7 +189,7 @@ require('head-navbar.php');
                 <?php } ?>
                 <?php foreach ($produtos as $prod): ?>
                     <tr>
-                        <td><?= $prod['nome']; ?></td>
+                        <td><?= htmlspecialchars($prod['nome']); ?></td>
                         <td><?= $prod['quantidade']; ?></td>
                         <td><?= $prod['data_validade']; ?></td>
                         <td>
@@ -214,7 +214,7 @@ document.getElementById('detalheProduto').addEventListener('show.bs.modal', (e) 
     });
 document.getElementById('editarProduto').addEventListener('show.bs.modal', (e) => {
     const produto = JSON.parse(e.relatedTarget.getAttribute('detalhe-produto'));
-    document.getElementById('editarNomeProduto').textContent = produto.nome;
+    document.getElementById('editarNomeProduto').textContent = `Editando: ${produto.nome}`;
     document.getElementById('editarProdutoId').value = produto.id;
     document.getElementById('editarNomeProduto2').value = produto.nome;
     document.getElementById('editarValidadeProduto').value = produto.data_validade_iso;
