@@ -31,7 +31,7 @@ $usuarios = $gerenciar_usuarios->recuperar_usuarios();
                     <tr>
                         <td><?= htmlspecialchars($usuario['cadastro'])?></td>
                         <td><?= htmlspecialchars($usuario['nome']); ?></td>
-                        <td><?= $usuario['cargo']; ?></td>
+                        <td><?= htmlspecialchars($usuario['cargo']); ?></td>
                         <td>
                             <form action="gerenciar-usuarios.php" method="post" class="d-inline">
                                 <input type="hidden" name="usuario_id" value="<?= $usuario['id']; ?>">
