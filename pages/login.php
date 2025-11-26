@@ -1,12 +1,15 @@
 <?php
 require('../funcoes/sessao.php');
+require('../database/conexao.php');
 require('../funcoes/echo-out.php');
+require('../funcoes/validation.php');
+require('../funcoes/auth.php');
+$_SESSION['csrf_token'] = Auth::gerar_token_csrf();
 $senha_invalida = false;
 $usuario_nao_localizado = false;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require('../database/conexao.php');
-            $cadastro = $_POST['cadastro'];
-            $senha = $_POST['password'];
+            $cadastro = validar_dados($_POST['cadastro']);
+            $senha = validar_dados($_POST['password']);
             try {
                 $stmt = $pdo->prepare("SELECT * FROM usuario WHERE cadastro = :cadastro");
                 $stmt->execute(['cadastro' => $cadastro]);
@@ -26,7 +29,7 @@ $usuario_nao_localizado = false;
                     $senha_invalida = true;
                 }
             } catch (Exception $e) {
-                error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+                error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
             }
         }
 ?>
