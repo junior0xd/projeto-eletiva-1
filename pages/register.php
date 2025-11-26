@@ -1,6 +1,10 @@
 <?php
 require('../funcoes/echo-out.php');
 require('../funcoes/usuarios.php');
+require('../funcoes/auth.php');
+require('../funcoes/sessao.php');
+require('../funcoes/validation.php');
+$_SESSION['csrf_token'] = Auth::gerar_token_csrf();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
@@ -22,32 +26,44 @@ require('../funcoes/usuarios.php');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
             $gerenciar_usuario = new Usuario($pdo);
-            $nome = $_POST['nome'];
-            $cadastro = $_POST['cadastro'];
-            $senha = $_POST['senha'];
-            $confirmSenha = $_POST['confirmSenha'];
-
+            $nome = validar_dados($_POST['nome']);
+            $cadastro = validar_dados($_POST['cadastro']);
+            $senha = validar_dados($_POST['senha']);
+            $confirmSenha = validar_dados($_POST['confirmSenha']);
+            $erroValidacaoRegistro = false;
+            if(!Auth::verificar_token_csrf($_POST['csrf_token'])) {
+                echoAlertaDanger('Um erro ocorreu. Por favor, tente novamente.');
+                $erroValidacaoRegistro = true;
+            }
+            if (!validar_senha($senha)) {
+                echoAlertaWarning('A senha deve ter pelo menos 8 caracteres.');
+                $erroValidacaoRegistro = true;
+            }
             if ($senha !== $confirmSenha) {
                 echoAlertaWarning('As senhas não coincidem. Por favor, tente novamente.');
-            } elseif (!empty($gerenciar_usuario->recuperar_usuario_por_cadastro($cadastro))) {
+                $erroValidacaoRegistro = true;
+            }
+            if (!empty($gerenciar_usuario->recuperar_usuario_por_cadastro($cadastro))) {
                 echoAlertaWarning('Cadastro já registrado. Por favor, use outro cadastro.');
-            } else {
-                $hashedSenha = $gerenciar_usuario->encriptar_senha($senha);
+                $erroValidacaoRegistro = true;
+            }
+            
                 try {
-                    $gerenciar_usuario->criar_usuario($nome, $cadastro, $hashedSenha, 1); //cargo hardcoded
-                    echoSucesso('Usuário registrado com sucesso!');
-                    sleep(2);
-                    header('Location: login.php');
-                    echoSendToLogin();
-                    exit();
+                    if (!$erroValidacaoRegistro) {
+                        $hashedSenha = $gerenciar_usuario->encriptar_senha($senha);
+                        $gerenciar_usuario->criar_usuario($nome, $cadastro, $hashedSenha, 1); //cargo hardcoded
+                        echoSucesso('Usuário registrado com sucesso!');
+                        sleep(2);
+                        header('Location: login.php');
+                    }
                 } catch (Exception $e) {
                     echoAlertaDanger('Falha ao registrar o usuário. Por favor, tente novamente.');
                     error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
                 }
             }
-        }
         ?>
         <form class="" action="register.php" method="POST">
+            <input type="hidden" name="csrf_token" value="<?=$_SESSION['csrf_token']?>">
             <div class="form-floating mb-4">
                 <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
                 <label for="nome" class="form-label fw-medium">Nome</label>
