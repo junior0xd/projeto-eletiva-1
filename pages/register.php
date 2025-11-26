@@ -1,10 +1,12 @@
 <?php
+require('../funcoes/sessao.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/usuarios.php');
 require('../funcoes/auth.php');
-require('../funcoes/sessao.php');
 require('../funcoes/validation.php');
-$_SESSION['csrf_token'] = Auth::gerar_token_csrf();
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = Auth::gerar_token_csrf();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
@@ -58,7 +60,7 @@ $_SESSION['csrf_token'] = Auth::gerar_token_csrf();
                     }
                 } catch (Exception $e) {
                     echoAlertaDanger('Falha ao registrar o usuário. Por favor, tente novamente.');
-                    error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+                    error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
                 }
             }
         ?>
