@@ -20,7 +20,7 @@ class Produto
             return 2;
         }
     } catch (Exception $e) {
-        error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+        error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
         return 2;
     }
     }
@@ -58,7 +58,7 @@ class Produto
         ));
         return 1;
         } catch (Exception $e) {
-            error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+            error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
             return 2;
         }
     }
@@ -72,7 +72,7 @@ class Produto
             ));
             return 1;
             } catch (Exception $e) {
-                error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+                error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
                 return 2;
             }
     }
@@ -86,7 +86,7 @@ class Produto
             ));
             return 1;
             } catch (Exception $e) {
-                error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+                error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
                 return 2;
             }
     }
@@ -137,7 +137,7 @@ class Produto
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             
         } catch (Exception $e) {
-            error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+            error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
         }
         return $produtos;
     }
@@ -147,7 +147,7 @@ class Produto
             $stmt = $this->pdo->query("SELECT * from categoria");
             $categorias = $stmt->fetchAll();
         } catch (Exception $e) {
-            error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
+            error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
         }
         return $categorias;
     }
