@@ -1,11 +1,12 @@
 <?php
 require('../funcoes/sessao.php');
+require('../database/conexao.php');
+require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
 require('../funcoes/usuarios.php');
 Auth::verificar_sessao_ativa();
 Auth::verificar_usuario_admin();
 define('IN_APP', true);
-require('../database/conexao.php');
 $gerenciar_usuarios = new Usuario($pdo);
 require('head-navbar.php');
 if($_SERVER['REQUEST_METHOD'] === 'POST'){

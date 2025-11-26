@@ -1,6 +1,7 @@
 <?php
 require('../funcoes/sessao.php');
 require('../database/conexao.php');
+require('../funcoes/security-headers.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/validation.php');
 require('../funcoes/auth.php');

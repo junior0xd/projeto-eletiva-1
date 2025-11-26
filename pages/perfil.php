@@ -1,5 +1,6 @@
 <?php
 require('../funcoes/sessao.php');
+require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
 Auth::verificar_sessao_ativa();
 define('IN_APP', true);

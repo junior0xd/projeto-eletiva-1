@@ -1,5 +1,7 @@
 <?php
+require('../database/conexao.php');
 require('../funcoes/sessao.php');
+require('../funcoes/security-headers.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/usuarios.php');
 require('../funcoes/auth.php');
@@ -26,7 +28,6 @@ if (empty($_SESSION['csrf_token'])) {
         </div>
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require('../database/conexao.php');
             $gerenciar_usuario = new Usuario($pdo);
             $nome = validar_dados($_POST['nome']);
             $cadastro = validar_dados($_POST['cadastro']);

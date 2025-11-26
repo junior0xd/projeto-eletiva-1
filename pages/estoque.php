@@ -1,11 +1,12 @@
 <?php
 require('../funcoes/sessao.php');
-require('../funcoes/auth.php');
-Auth::verificar_sessao_ativa();
-define('IN_APP', true);
 require('../database/conexao.php');
+require('../funcoes/security-headers.php');
+require('../funcoes/auth.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
+Auth::verificar_sessao_ativa();
+define('IN_APP', true);
 $gerenciar_produtos = new Produto($pdo);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $produto_id = $_POST['produto_id'];
