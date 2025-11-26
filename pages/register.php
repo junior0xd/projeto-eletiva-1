@@ -1,11 +1,6 @@
 <?php
-function usuarioJaRegistrado($cadastro, $pdo)
-{
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE cadastro = :cadastro");
-    $stmt->execute(['cadastro' => $cadastro]);
-    return $stmt->fetchColumn() > 0;
-}
 require('../funcoes/echo-out.php');
+require('../funcoes/usuarios.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">
@@ -26,6 +21,7 @@ require('../funcoes/echo-out.php');
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require('../database/conexao.php');
+            $gerenciar_usuario = new Usuario($pdo);
             $nome = $_POST['nome'];
             $cadastro = $_POST['cadastro'];
             $senha = $_POST['senha'];
@@ -33,20 +29,19 @@ require('../funcoes/echo-out.php');
 
             if ($senha !== $confirmSenha) {
                 echoAlertaWarning('As senhas não coincidem. Por favor, tente novamente.');
-            } elseif (usuarioJaRegistrado($cadastro, $pdo)) {
+            } elseif (!empty($gerenciar_usuario->recuperar_usuario_por_cadastro($cadastro))) {
                 echoAlertaWarning('Cadastro já registrado. Por favor, use outro cadastro.');
             } else {
-                $hashedSenha = password_hash($senha, PASSWORD_BCRYPT, ['cost' => 12]);
+                $hashedSenha = $gerenciar_usuario->encriptar_senha($senha);
                 try {
-                    $stmt = $pdo->prepare("INSERT INTO usuario (nome, cadastro, senha, cargo) VALUES (:nome, :cadastro, :senha, :cargo)");
-                    if ($stmt->execute(['nome' => $nome, 'cadastro' => $cadastro, 'senha' => $hashedSenha, 'cargo' => 1])) { //cargo hardcoded
-                        echoSucesso('Usuário registrado com sucesso!');
-                        sleep(2);
-                        header('Location: login.php');
-                    } else {
-                        echoAlertaDanger('Falha ao registrar o usuário. Por favor, tente novamente.');
-                    }
+                    $gerenciar_usuario->criar_usuario($nome, $cadastro, $hashedSenha, 1); //cargo hardcoded
+                    echoSucesso('Usuário registrado com sucesso!');
+                    sleep(2);
+                    header('Location: login.php');
+                    echoSendToLogin();
+                    exit();
                 } catch (Exception $e) {
+                    echoAlertaDanger('Falha ao registrar o usuário. Por favor, tente novamente.');
                     error_log($e->getMessage(), 3 | 4, '/home/bisel/Documentos/projeto-eletiva-1/php_errors.log');
                 }
             }
