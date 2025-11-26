@@ -190,8 +190,8 @@ require('head-navbar.php');
                 <?php foreach ($produtos as $prod): ?>
                     <tr>
                         <td><?= htmlspecialchars($prod['nome']); ?></td>
-                        <td><?= $prod['quantidade']; ?></td>
-                        <td><?= $prod['data_validade']; ?></td>
+                        <td><?= htmlspecialchars($prod['quantidade']); ?></td>
+                        <td><?= htmlspecialchars($prod['data_validade']); ?></td>
                         <td>
                             <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'>Detalhes</button>
                             <button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'>Editar</button>
