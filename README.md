@@ -2,16 +2,16 @@
 Este é o repositório do projeto referente a matéria Programação Web
 
 # Próximos Passos
-1. Adicionar Modal no Botão de Filtros (OK)
-2. Adicionar Modal para Novos Produtos (OK)
-3. Melhorar a Responsividade do Site (Mais ou menos)
-4. Adicionar Página de Perfil do Usuário (mais ou menos)
-5. Adicionar Página de Detalhes do Produto (Mais ou menos)
-6. Página para gerenciamento de usuários (mais ou menos)
-7. Página para gerenciamento de categoria (HARDCODED)
-8. Aumentar segurança do sistema verificando as permissões (mais ou menos)
-9. Adicionar página para inserir muitos produtos de uma vez
-10. Implementar cargos de usuário (admin, usuário comum, etc)
+1. Adicionar Modal no Botão de Filtros ✅
+2. Adicionar Modal para Novos Produtos ✅
+3. Melhorar a Responsividade do Site 🚧
+4. Adicionar Página de Perfil do Usuário ✅
+5. Adicionar Página de Detalhes do Produto ✅
+6. Página para gerenciamento de usuários ✅
+7. Página para gerenciamento de categoria (HARDCODED) 🚧
+8. Aumentar segurança do sistema verificando as permissões ✅
+9. Adicionar página para inserir muitos produtos de uma vez ❌
+10. Implementar cargos de usuário (admin, usuário comum, etc) ❌
 
 # Problemas
 
