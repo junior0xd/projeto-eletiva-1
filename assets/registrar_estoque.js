@@ -140,6 +140,4 @@ $(document).ready(function() {
         select.trigger('change.select2');
         div.remove();
     });
-
-    
 });
