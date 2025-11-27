@@ -17,6 +17,10 @@ if (!defined('IN_APP')) {
             </div>
             <div class="modal-body">
                 <div class="mb-2">
+                    <strong>Descrição:</strong>
+                    <p id="detalheDescricao">Placeholder</p>
+                </div>
+                <div class="mb-2">
                     <strong>Quantidade:</strong>
                     <span id="detalheQuantidade">0</span>
                 </div>
