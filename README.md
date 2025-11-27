@@ -38,6 +38,24 @@ Este é o repositório do projeto referente a matéria Programação Web
 ```
 4. Verifique se o problema foi resolvido acessando sua aplicação novamente.
 
+### Instalar PhpMyAdmin 
+
+1. Instale o PhpMyAdmin.
+```bash
+    sudo apt update
+    sudo apt install phpmyadmin
+```
+2. Durante a instalação, selecione o servidor web (Apache2) e configure o banco se necessário.
+
+3. Inclua o PhpMyAdmin na configuração do Apache.
+```bash
+    sudo echo 'Include /etc/phpmyadmin/apache.conf' >> /etc/apache2/apache2.conf
+```
+4. Reinicie o servidor Apache.
+```bash
+    sudo systemctl restart apache2
+```
+
 
 # Licença
 
