@@ -7,9 +7,16 @@ document.getElementById('detalheProduto').addEventListener('show.bs.modal', (e) 
     } else {
         produto.categoria = 'Desconhecida';
     }
+    if (produto.data_validade === null || produto.data_validade === '0000-00-00'){
+        produto.data_validade = 'Indeterminado';
+    }
+    if (produto.descricao === null || produto.descricao.trim() === ''){
+        produto.descricao = 'Sem descrição disponível.';
+    }
     document.getElementById('detalheNomeProduto').textContent = produto.nome;
     console.log(produto);
     document.getElementById('detalheQuantidade').textContent = produto.quantidade;
+    document.getElementById('detalheDescricao').textContent = produto.descricao;
     document.getElementById('detalheValidade').textContent = produto.data_validade;
     document.getElementById('detalheCategoria').textContent = produto.categoria;
     });
