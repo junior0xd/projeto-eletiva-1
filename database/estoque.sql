@@ -31,3 +31,7 @@ CREATE TABLE IF NOT EXISTS produto(
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO categoria (id, nome) VALUES
+(1, 'Enfermagem'),
+(2, 'Escritório');
