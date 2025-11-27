@@ -35,6 +35,27 @@ if (!defined('IN_APP')) {
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <div class="mt-4 mb-3">
+                        <h2 class="fw-medium fs-6">Opcionais</h2>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="mostrar_descricao" id="mostrar_descricao">
+                            <label for="mostrar_descricao" >Adicionar descrição?</label>
+                            <span class="d-inline-flex" style="color:cadetblue" data-bs-toggle="tooltip" data-bs-placement="top" title="Descrição detalhada do produto."><?php iconeInfo(); ?></span>
+                        </div>
+                        <div hidden class="mb-2" id="div_descricao_produto">
+                            <label for="descricao_produto" class="col-form-label">Descrição</label>
+                            <textarea class="form-control" id="descricao_produto" name="descricao_produto" rows="3"></textarea>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="mostrar_quantidade_min" id="mostrar_quantidade_min">
+                            <label for="mostrar_quantidade_min" >Definir quantidade mínima?</label>
+                            <span class="d-inline-flex" style="color:cadetblue" data-bs-toggle="tooltip" data-bs-placement="top" title="Quantidade mínima para alerta de estoque baixo."><?php iconeInfo(); ?></span>
+                        </div>
+                        <div hidden class="mb-2" id="div_qtd_min_produto">
+                            <label for="quantidade_min_produto" class="col-form-label">Quantidade Mínima</label>
+                            <input type="number" class="form-control" id="quantidade_min_produto" name="quantidade_min_produto" value="0">
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         <button type="submit" class="btn btn-primary">Adicionar Produto</button>
