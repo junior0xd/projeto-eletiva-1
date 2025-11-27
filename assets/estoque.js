@@ -28,3 +28,19 @@ document.getElementById('editarProduto').addEventListener('show.bs.modal', (e) =
     document.getElementById('editarValidadeProduto').value = produto.data_validade_iso;
     document.getElementById('editarQuantidadeProduto').value = produto.quantidade;
     });
+document.getElementById('mostrar_quantidade_min').addEventListener('change', (e) => {
+    const divElement = document.getElementById('div_qtd_min_produto');
+    if (e.target.checked) {
+        divElement.removeAttribute('hidden');
+    } else {
+        divElement.setAttribute('hidden', 'true');
+    }
+});
+document.getElementById('mostrar_descricao').addEventListener('change', (e) => {
+    const divElement = document.getElementById('div_descricao_produto');
+    if (e.target.checked) {
+        divElement.removeAttribute('hidden');
+    } else {
+        divElement.setAttribute('hidden', 'true');
+    }
+});
