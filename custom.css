@@ -38,3 +38,9 @@
   color: #dee2e6;
   background-color: #363a3d;
 }
+.pagination-lg {
+  --bs-pagination-padding-x: 1rem;
+  --bs-pagination-padding-y: 0.3rem;
+  --bs-pagination-font-size: 1.25rem;
+  --bs-pagination-border-radius: var(--bs-border-radius-lg);
+}
