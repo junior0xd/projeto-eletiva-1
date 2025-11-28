@@ -1,7 +1,8 @@
 <?php
 if (!defined('IN_APP')) {
     http_response_code(403);
-    exit('Acesso proibido');
+    include('../pages/forbidden.php');
+    exit();
 }
 ?>
 <div class="modal fade" id="editarProduto" tabindex="-1" aria-labelledby="editarProdutoLabel" aria-hidden="true">
