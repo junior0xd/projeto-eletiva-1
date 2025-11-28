@@ -26,7 +26,17 @@ class Auth{
     public static function verificar_usuario_admin() {
         if (empty($_SESSION['cargo']) || $_SESSION['cargo'] !== 60) {
             http_response_code(403);
-            exit('Acesso negado: privilégios insuficientes.');
+            include('../pages/forbidden.php');
+            exit();
+        }
+    }
+    public static function verificar_usuario(){
+        if (empty($_SESSION['cargo']) || 
+        ($_SESSION['cargo'] !== intval(getenv('ROLE_USER')) &&
+         $_SESSION['cargo'] !== intval(getenv('ROLE_ADMIN')))) {
+            http_response_code(403);
+            include('../pages/forbidden.php');
+            exit();
         }
     }
     public static function logout() {
