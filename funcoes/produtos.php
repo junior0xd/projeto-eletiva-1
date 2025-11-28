@@ -119,8 +119,8 @@ class Produto
             }
             // baixo estoque
             if (!empty($opcoes['baixo'])) {
-                $condicoes[] = 'quantidade <= :qtd_minima';
-                $parametros[':qtd_minima'] = 5;
+                $condicoes[] = 'quantidade <= COALESCE(quantidade_minima, :qtd_minima)';
+                $parametros[':qtd_minima'] = getenv('QUANTITY_MIN_ALERT');
             }
             //formato da data
             $parametros[':formato_data'] = "%d/%m/%Y";
@@ -137,6 +137,7 @@ class Produto
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             
         } catch (Exception $e) {
+            echo $e->getMessage();
             error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
         }
         return $produtos;
