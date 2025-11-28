@@ -5,7 +5,7 @@ function validar_dados($dados)
     return $dados;
 }
 function validar_senha($senha){
-    if (strlen($senha) < 8) {
+    if (strlen($senha) < getenv('PASSWORD_LENGTH_MIN')) {
         return false;
     }
     return true;
