@@ -8,6 +8,7 @@ require('../funcoes/produtos.php');
 Auth::verificar_sessao_ativa();
 define('IN_APP', true);
 $gerenciar_produtos = new Produto($pdo);
+$parametros_get = '?';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $produto_id = $_POST['produto_id'];
     $nome_produto = $_POST['nome_produto'];
@@ -36,14 +37,17 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $vencidos = isset($_GET['checkboxVencidos']);
     if($vencidos){
         $vencido_check = 'checked';
+        $parametros_get .= 'checkboxVencidos=on&';
     }
     $proximos_vencimento = isset($_GET['checkboxProximosVencimento']);
     if ($proximos_vencimento){
         $proximovenc_check = 'checked';
+        $parametros_get .= 'checkboxProximosVencimento=on&';
     }
     $baixo_estoque = isset($_GET['checkboxBaixoEstoque']);
     if($baixo_estoque){
         $baixo_check = 'checked';
+        $parametros_get .= 'checkboxBaixoEstoque=on&';
     }
     $filtro_enfermagem = isset($_GET['switchEnfermagem']);
     $filtro_escritorio = isset($_GET['switchEscritorio']);
@@ -53,22 +57,31 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         'vencidos' => $vencidos,
         'proximos' => $proximos_vencimento,
         'baixo' => $baixo_estoque,
+        'pagina' => $_GET['pagina'] ?? 1
     ]; 
     if($filtro_enfermagem && !$filtro_escritorio){
         $enf_check = 'checked';
+        $parametros_get .= 'switchEnfermagem=on&';
         $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'ENFERMAGEM', opcoes: $opcoes);
     } elseif ($filtro_escritorio && !$filtro_enfermagem){
         $esc_check = 'checked';
+        $parametros_get .= 'switchEscritorio=on&';
         $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'ESCRITORIO', opcoes: $opcoes);
     } else {
         $enf_check = 'checked';
         $esc_check = 'checked';
+        $parametros_get .= 'switchEnfermagem=on&switchEscritorio=on&';
         $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
     }
 } else {
     $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS');
 }
+//Paginação
 $categorias = $gerenciar_produtos->recuperar_categorias();
+$pagina_atual = $gerenciar_produtos->pagina_atual;
+$total_registros = $gerenciar_produtos->total_registros;
+$registros_por_pagina = intval(getenv('RECORDS_PER_PAGE'));
+$paginas = ceil($total_registros / $registros_por_pagina);
 require('head-navbar.php');
 ?>
 <main class="container w-100 mt-4">
@@ -175,6 +188,25 @@ require('head-navbar.php');
         </div>
     </form>
     <div class="container border mt-3">
+        <nav aria-label="Navegação estoque">
+            <ul class="pagination pagination-lg justify-content-center mt-3">
+                <li class="page-item">
+                    <a class="page-link <?=  $pagina_atual <= 1 ? 'disabled' : '' ?>" href="<?= $parametros_get ?>&pagina=<?= max(1, $pagina_atual - 1) ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <?php for ($i = 1; $i <= $paginas; $i++) { ?>
+                    <li class="page-item">
+                         <a class="page-link" href="<?= $parametros_get ?>&pagina=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php } ?>
+                <li class="page-item">
+                    <a class="page-link <?= $pagina_atual >= $paginas ? 'disabled' : '' ?>" href="<?= $parametros_get ?>&pagina=<?= min($paginas, $pagina_atual + 1) ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
         <table class="table table-hover">
             <thead>
                 <tr>
