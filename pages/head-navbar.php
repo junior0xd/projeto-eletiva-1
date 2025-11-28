@@ -31,7 +31,7 @@ if (!defined('IN_APP')) {
                 <li class="nav-item">
                     <a class="ms-2 nav-link fs-6" aria-current="page" href="estoque.php">Estoque</a>
                 </li>
-                <?php if($_SESSION['cargo'] === 60){ ?>
+                <?php if($_SESSION['cargo'] === getenv('ROLE_ADMIN')){ ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gerenciar</a>
                     <ul class="dropdown-menu" aria-labelledby="gerenciarDropdown">
