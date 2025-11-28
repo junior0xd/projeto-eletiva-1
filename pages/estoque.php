@@ -191,8 +191,22 @@ require('head-navbar.php');
                 <?php foreach ($produtos as $prod): ?>
                     <tr>
                         <td><?= htmlspecialchars($prod['nome']); ?></td>
-                        <td><?= htmlspecialchars($prod['quantidade']); ?></td>
-                        <td><?= htmlspecialchars($prod['data_validade']); ?></td>
+                        <td>
+                            <?php if(isset($prod['quantidade_minima']) && $prod['quantidade'] < $prod['quantidade_minima']){?>
+                              <span style=""><?= htmlspecialchars($prod['quantidade']) ?></span>  
+                            <span class="position-absolute badge" data-bs-toggle="tooltip" data-bs-placement="top" title="Quantidade abaixo do mínimo definido."><?php iconeExclamacao(); ?></span> <?php
+                            } else { ?>
+                                <span><?= htmlspecialchars($prod['quantidade']) ?></span>
+                            <?php } ?>
+                        </td>
+                        <td>
+                            <?php if(isset($prod['data_validade']) && strtotime($prod['data_validade_iso']) < time()){ ?>
+                                <span style=""><?= htmlspecialchars($prod['data_validade']); ?></span>
+                                <span class="position-absolute badge" data-bs-toggle="tooltip" data-bs-placement="top" title="Produto vencido."><?php iconeEmojiDizzy(); ?></span>
+                            <?php } else { ?>
+                                <span><?= htmlspecialchars($prod['data_validade']); ?></span>
+                            <?php } ?>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'>Detalhes</button>
                             <button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'>Editar</button>
