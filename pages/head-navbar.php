@@ -32,9 +32,14 @@ if (!defined('IN_APP')) {
                     <a class="ms-2 nav-link fs-6" aria-current="page" href="estoque.php">Estoque</a>
                 </li>
                 <?php if($_SESSION['cargo'] === 60){ ?>
-                <li>
-                    <a class="ms-2 nav-link fs-6" href="gerenciar-usuarios.php">Usuários</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gerenciar</a>
+                    <ul class="dropdown-menu" aria-labelledby="gerenciarDropdown">
+                        <li><a class="dropdown-item" href="gerenciar-usuarios.php">Usuários</a></li>
+                        <li><a class="dropdown-item" href="relatorios.php">Relatórios</a></li>
+                    </ul>
                 </li>
+
                 <?php } ?>
             </ul>
             <div class="navbar-nav ms-auto dropdown">
