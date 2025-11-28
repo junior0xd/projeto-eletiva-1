@@ -1,6 +1,8 @@
 <?php
 class Produto
 {
+    public int $pagina_atual;
+    public int $total_registros;
     public function __construct(protected PDO $pdo) {}
     public function adicionar_produto($nome, $quantidade, $categoria, $validade = null) {
         try {
@@ -134,7 +136,29 @@ class Produto
             $sql .= ' ORDER BY nome';
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($parametros);
-            $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            $total_registros = $stmt->rowCount();
+            if (!empty($opcoes['pagina'])){
+                $registros_por_pagina = intval(getenv('RECORDS_PER_PAGE'));
+                $total_paginas = ceil($total_registros / $registros_por_pagina);
+                $pagina_atual = max(1, min($opcoes['pagina'], $total_paginas));
+                $offset = ($pagina_atual - 1) * $registros_por_pagina;
+                $sql .= ' LIMIT :limit OFFSET :offset';
+                $stmt = $this->pdo->prepare($sql);
+                foreach ($parametros as $key => $value) {
+                    if ($key === ':limit' || $key === ':offset') {
+                        continue;
+                    }
+                    $stmt->bindValue($key, $value);
+                }
+                $stmt->bindValue(':limit', (int)$registros_por_pagina, PDO::PARAM_INT);
+                $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+                $this->pagina_atual = $pagina_atual;
+                $this->total_registros = $total_registros;
+                $stmt->execute();
+            }
+            return $stmt->fetchAll();
+
+            
             
         } catch (Exception $e) {
             echo $e->getMessage();
