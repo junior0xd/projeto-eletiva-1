@@ -16,7 +16,7 @@ document.getElementById('detalheProduto').addEventListener('show.bs.modal', (e) 
     document.getElementById('detalheNomeProduto').textContent = produto.nome;
     console.log(produto);
     document.getElementById('detalheQuantidade').textContent = produto.quantidade;
-    document.getElementById('detalheDescricao').textContent = produto.descricao;
+    document.getElementById('detalheDescricao').innerHTML = `<strong>Descrição:</strong> ${produto.descricao}`;
     document.getElementById('detalheValidade').textContent = produto.data_validade;
     document.getElementById('detalheCategoria').textContent = produto.categoria;
     });
