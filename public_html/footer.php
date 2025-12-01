@@ -5,8 +5,8 @@ if (!defined('IN_APP')) {
     exit();
 }
 ?>
-    <script src="libs/bootstrap.bundle.min.js"></script>
-    <script src="libs/jquery.min.js"></script>
-    <script src="libs/select2.min.js"></script> 
+    <script src="libs/thirdparty/bootstrap.bundle.min.js"></script>
+    <script src="libs/thirdparty/jquery.min.js"></script>
+    <script src="libs/thirdparty/select2.min.js"></script> 
 </body>
 </html>

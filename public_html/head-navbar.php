@@ -10,9 +10,9 @@ if (!defined('IN_APP')) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="libs/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="libs/select2.min.css">
-    <link rel="stylesheet" href="libs/select2-bootstrap-5-theme.min.css">
+    <link href="libs/thirdparty/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="libs/thirdparty/select2.min.css">
+    <link rel="stylesheet" href="libs/thirdparty/select2-bootstrap-5-theme.min.css">
     <link rel="stylesheet" href="libs/custom.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Vida Nova: Estoque</title>
