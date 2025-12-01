@@ -29,6 +29,8 @@
 .select2-container--bootstrap-5 .select2-dropdown {
   color: #dee2e6;
   background-color: #222629;
+  border-color: #495057;
+  box-shadow: 0 .50rem 0 .25rem rgba(13,110,253,.25);
 }
 
 .select2-container--bootstrap-5
