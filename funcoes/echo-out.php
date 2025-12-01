@@ -36,7 +36,7 @@
 } ?>
 <?php function echoSendToLogin() {?>
     <div class="form-text text-light mt-3">
-        <a href="login.php" class="text-info">Clique aqui</a>
+        <a href="index.php" class="text-info">Clique aqui</a>
         para voltar à página de login.
     </div>
 <?php } ?>

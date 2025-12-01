@@ -18,7 +18,7 @@ class Auth{
         if (empty($_SESSION['ultimo_acesso']) || (time() - $_SESSION['ultimo_acesso']) > $tempo_limite) {
             session_unset();
             session_destroy();
-            header('Location: login.php?sessao_expirada=true');
+            header('Location: index.php?sessao_expirada=true');
             exit();
         }
         $_SESSION['ultimo_acesso'] = time();
@@ -42,7 +42,7 @@ class Auth{
     public static function logout() {
         session_unset();
         session_destroy();
-        header('Location: login.php');
+        header('Location: index.php');
         exit();
     }
 }

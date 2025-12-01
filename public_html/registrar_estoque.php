@@ -1,5 +1,6 @@
 <?php
 require('../funcoes/sessao.php');
+require('../funcoes/authorization.php');
 require('../database/conexao.php');
 require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
@@ -83,4 +84,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <?php
 require('footer.php');
 ?>
-<script src="../assets/registrar_estoque.js"></script>
+<script src="libs/registrar_estoque.js"></script>

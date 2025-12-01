@@ -1,5 +1,6 @@
 <?php
 require('../funcoes/sessao.php');
+require('../funcoes/authorization.php');
 require('../database/conexao.php');
 require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
@@ -252,4 +253,4 @@ require('head-navbar.php');
     <?php include('modal_detalhe_produto.php'); ?>
 </main>
 <?php require('footer.php'); ?>
-<script src="../assets/estoque.js"></script>
+<script src="libs/estoque.js"></script>

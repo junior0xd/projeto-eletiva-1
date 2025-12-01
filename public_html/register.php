@@ -15,8 +15,8 @@ if (empty($_SESSION['csrf_token'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link href="libs/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Vida Nova: Registrar</title>
 </head>
 <body class="d-flex justify-content-center vh-100">
@@ -57,7 +57,7 @@ if (empty($_SESSION['csrf_token'])) {
                         $gerenciar_usuario->criar_usuario($nome, $cadastro, $hashedSenha, 1); //cargo hardcoded
                         echoSucesso('Usuário registrado com sucesso!');
                         sleep(2);
-                        header('Location: login.php');
+                        header('Location: index.php');
                     }
                 } catch (Exception $e) {
                     echoAlertaDanger('Falha ao registrar o usuário. Por favor, tente novamente.');
@@ -87,10 +87,10 @@ if (empty($_SESSION['csrf_token'])) {
             <button type="submit" class="btn btn-success mt-3 w-100">Registrar</button>
             <div class="form-text text-light mt-3">
                 Já possui uma conta?
-                <a href="login.php" class="text-info">Faça login</a>
+                <a href="index.php" class="text-info">Faça login</a>
             </div>
         </form>
     </main>
-    <script src="../bootstrap.bundle.min.js"></script>
+    <script src="libs/bootstrap.bundle.min.js"></script>
 </body>
 </html>

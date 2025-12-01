@@ -39,8 +39,8 @@ $usuario_nao_localizado = false;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link href="libs/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Vida Nova: Login</title>
 </head>
 <body class="d-flex justify-content-center">
@@ -62,7 +62,7 @@ $usuario_nao_localizado = false;
         if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['nao_logado'])) {
             echoAlertaDanger('Você precisa estar logado para acessar essa página.');
         }?>
-        <form action="login.php" method="POST">
+        <form action="index.php" method="POST">
             <div class="form-floating mb-1">
                 <input type="text" class="form-control" id="cadastro" placeholder="Digite seu cadastro" name="cadastro">
                 <label for="cadastro" class="form-label fw-medium">Cadastro</label>
@@ -79,6 +79,6 @@ $usuario_nao_localizado = false;
             </div>
         </form>
     </main>
-    <script src="../bootstrap.bundle.min.js"></script>
+    <script src="libs/bootstrap.bundle.min.js"></script>
 </body>
 </html>
