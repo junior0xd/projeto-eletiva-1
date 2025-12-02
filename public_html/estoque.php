@@ -209,6 +209,7 @@ require('head-navbar.php');
                 </li>
             </ul>
         </nav>
+        <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -239,14 +240,14 @@ require('head-navbar.php');
                                 <span><?= htmlspecialchars($prod['data_validade']); ?></span>
                             <?php } ?>
                         </td>
-                        <td class="row gx-5">
-                            <button type="button" class="btn btn-outline-info btn-sm col-auto ms-sm-4 ms-lg-3 me-lg-2" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeInfoSquareFill(); ?></button>
+                        <td class="row-lg-3 row-md-3 row-3">
+                            <button type="button" class="btn btn-outline-info btn-sm col-auto ms-lg-3 me-lg-2" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeInfoSquareFill(); ?></button>
                             <button type="button" class="btn btn-outline-warning btn-sm col-auto me-lg-2" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconePencilSquare(); ?></button>
-                            <form action="estoque.php" method="post">
+                            <form action="estoque.php" method="post" class="col-auto d-inline">
                                 <input type="hidden" name="produto_id" value="<?= htmlspecialchars($prod['id']) ?>">
                                 <input type="hidden" name="tipo_solicitacao" value="deletar">
                             <?php if($_SESSION['cargo'] == 60){ ?>
-                                <button type="submit" class="btn btn-outline-danger btn-sm col-auto"><?php iconeLixeira(); ?></button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm"><?php iconeLixeira(); ?></button>
                             <?php } ?>
                             </form>
                         </td>
@@ -254,6 +255,7 @@ require('head-navbar.php');
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
         <?php include('modal_editar_produto.php'); ?>
     </div>
     <?php include('modal_detalhe_produto.php'); ?>
