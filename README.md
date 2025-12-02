@@ -8,4 +8,5 @@ Este é o repositório do projeto referente a matéria Programação Web
 4. Adicionar página para inserir muitos produtos de uma vez 
 5. Implementar cargos de usuário (admin, usuário comum, etc) 
 6. Adicionar histórico para cada produto em estoque (quem criou, ultima atualizacao, etc.) 
-7. Implementar POST-Redirect-GET pattern 
+7. Implementar POST-Redirect-GET pattern
+8. Desenvolver funcionalidade para recuperar a conta caso esqueça a senha
