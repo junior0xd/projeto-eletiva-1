@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             quantidade: $quantidade_produto, 
             categoria: $categoria_produto,
             validade: $validade_produto);
+    } elseif ($tipo_solicitacao == 'deletar'){
+        $deletou_produto = $gerenciar_produtos->deletar_produto(id: $produto_id);
     }
 
 }
@@ -241,9 +243,13 @@ require('head-navbar.php');
                         <td class="row gx-5">
                             <button type="button" class="btn btn-outline-info btn-sm col-auto ms-sm-4 ms-lg-3 me-lg-2" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeInfoSquareFill(); ?></button>
                             <button type="button" class="btn btn-outline-warning btn-sm col-auto me-lg-2" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconePencilSquare(); ?></button>
+                            <form action="estoque.php" method="post">
+                                <input type="hidden" name="produto_id" value="<?= htmlspecialchars($prod['id']) ?>">
+                                <input type="hidden" name="tipo_solicitacao" value="deletar">
                             <?php if($_SESSION['cargo'] == 60){ ?>
                                 <button type="button" class="btn btn-outline-danger btn-sm col-auto" data-bs-toggle="modal" data-bs-target="#deletarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeLixeira(); ?></button>
                             <?php } ?>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
