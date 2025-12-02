@@ -1,12 +1,12 @@
 <?php
 require('../funcoes/sessao.php');
-require('../funcoes/authorization.php');
 require('../database/conexao.php');
 require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
 Auth::verificar_sessao_ativa(intval(getenv('SESSION_TIMEOUT')));
+Auth::verificar_autorizacao();
 define('IN_APP', true);
 $gerenciar_produtos = new Produto($pdo);
 $parametros_get = '?';
@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($tipo_solicitacao == 'deletar'){
         $deletou_produto = $gerenciar_produtos->deletar_produto(id: $produto_id);
     }
-
 }
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $item_procurado = $_GET['produto_procurado'];
@@ -77,7 +76,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: $opcoes);
     }
 } else {
-    $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS');
+    $produtos = $gerenciar_produtos->recuperar_produtos(filtro_tipo:'TODOS', opcoes: ['pagina' => 1]);
 }
 //Paginação
 $categorias = $gerenciar_produtos->recuperar_categorias();
@@ -247,7 +246,7 @@ require('head-navbar.php');
                                 <input type="hidden" name="produto_id" value="<?= htmlspecialchars($prod['id']) ?>">
                                 <input type="hidden" name="tipo_solicitacao" value="deletar">
                             <?php if($_SESSION['cargo'] == 60){ ?>
-                                <button type="button" class="btn btn-outline-danger btn-sm col-auto" data-bs-toggle="modal" data-bs-target="#deletarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeLixeira(); ?></button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm col-auto"><?php iconeLixeira(); ?></button>
                             <?php } ?>
                             </form>
                         </td>

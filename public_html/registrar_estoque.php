@@ -1,10 +1,10 @@
 <?php
 require('../funcoes/sessao.php');
-require('../funcoes/authorization.php');
 require('../database/conexao.php');
 require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
 Auth::verificar_sessao_ativa();
+Auth::verificar_autorizacao();
 define('IN_APP', true);
 require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
