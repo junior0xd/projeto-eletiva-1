@@ -8,5 +8,5 @@ putenv('QUANTITY_MIN_ALERT=5');
 putenv('PASSWORD_LENGTH_MIN=8');
 putenv('ROLE_ADMIN=60');
 putenv('ROLE_USER=32');
-putenv('RECORDS_PER_PAGE=10');
+putenv('RECORDS_PER_PAGE=8');
 ?>
