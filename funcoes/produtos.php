@@ -26,6 +26,17 @@ class Produto
         return 2;
     }
     }
+    public function deletar_produto($id){
+        try {
+            $stmt = $this->pdo->prepare('DELETE FROM produto WHERE id = :id');
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return 1;
+        } catch (Exception $e) {
+            error_log($e->getMessage(), 3 | 4, getenv('ERROR_LOG_PATH'));
+            return 2;
+        }
+    }
     public function atualizar_produto($id, $nome = "", $quantidade = "", $categoria = "", $validade = ""){
         //carrega as informações do produto antes de atualizar
         $stmt_anterior = $this->pdo->prepare('SELECT * FROM produto WHERE id = :id');
