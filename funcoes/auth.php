@@ -26,16 +26,16 @@ class Auth{
     public static function verificar_usuario_admin() {
         if (empty($_SESSION['cargo']) || $_SESSION['cargo'] !== 60) {
             http_response_code(403);
-            include('../pages/forbidden.php');
+            include('../public_html/forbidden.php');
             exit();
         }
     }
-    public static function verificar_usuario(){
-        if (empty($_SESSION['cargo']) || 
-        ($_SESSION['cargo'] !== intval(getenv('ROLE_USER')) &&
-         $_SESSION['cargo'] !== intval(getenv('ROLE_ADMIN')))) {
+    public static function verificar_autorizacao() {
+        $cargos_permitidos = [intval(getenv('ROLE_ADMIN')),
+         intval(getenv('ROLE_USER'))];
+        if (empty($_SESSION['cargo']) || !in_array($_SESSION['cargo'], $cargos_permitidos)) {
             http_response_code(403);
-            include('../pages/forbidden.php');
+            include('../public_html/forbidden.php');
             exit();
         }
     }
