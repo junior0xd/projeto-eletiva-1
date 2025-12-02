@@ -1,5 +1,6 @@
 <?php
 require('../funcoes/sessao.php');
+require('../database/conexao.php');
 require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
 Auth::verificar_sessao_ativa();
@@ -10,7 +11,7 @@ function cargo_string($cargo_int): string {
     switch ($cargo_int) {
         case 60:
             return 'Administrador';
-        case 1:
+        case 32:
             return 'Usuário';
         default:
             return 'Desconhecido';
