@@ -15,5 +15,6 @@
     </svg>
     <p>Você não tem permissão para acessar esta página.</p>
     <p>Caso esteja acessando o sistema pela primeira vez ou acha que houve um erro, entre em contato com o administrador.</p>
+    <p><a href="index.php" style="text-decoration: underline; color: #0d6efd;">Clique aqui</a> para voltar ao início</p>
 </body>
 </html>
