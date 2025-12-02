@@ -6,7 +6,7 @@ require('../funcoes/security-headers.php');
 require('../funcoes/auth.php');
 require('../funcoes/echo-out.php');
 require('../funcoes/produtos.php');
-Auth::verificar_sessao_ativa();
+Auth::verificar_sessao_ativa(intval(getenv('SESSION_TIMEOUT')));
 define('IN_APP', true);
 $gerenciar_produtos = new Produto($pdo);
 $parametros_get = '?';
@@ -238,11 +238,11 @@ require('head-navbar.php');
                                 <span><?= htmlspecialchars($prod['data_validade']); ?></span>
                             <?php } ?>
                         </td>
-                        <td class="d-flex gap-3">
-                            <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeInfoSquareFill(); ?></button>
-                            <button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconePencilSquare(); ?></button>
+                        <td class="row gx-5">
+                            <button type="button" class="btn btn-outline-info btn-sm col-auto ms-sm-4 ms-lg-3 me-lg-2" data-bs-toggle="modal" data-bs-target="#detalheProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeInfoSquareFill(); ?></button>
+                            <button type="button" class="btn btn-outline-warning btn-sm col-auto me-lg-2" data-bs-toggle="modal" data-bs-target="#editarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconePencilSquare(); ?></button>
                             <?php if($_SESSION['cargo'] == 60){ ?>
-                                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeLixeira(); ?></button>
+                                <button type="button" class="btn btn-outline-danger btn-sm col-auto" data-bs-toggle="modal" data-bs-target="#deletarProduto" detalhe-produto='<?= json_encode($prod) ?>'><?php iconeLixeira(); ?></button>
                             <?php } ?>
                         </td>
                     </tr>
