@@ -199,7 +199,7 @@ require('head-navbar.php');
                 </li>
                 <?php for ($i = 1; $i <= $paginas; $i++) { ?>
                     <li class="page-item">
-                         <a class="page-link" href="<?= $parametros_get ?>&pagina=<?= $i ?>"><?= $i ?></a>
+                         <a class="page-link <?= $i == $pagina_atual ? 'active' : '' ?>" href="<?= $parametros_get ?>&pagina=<?= $i ?>"><?= $i ?></a>
                     </li>
                 <?php } ?>
                 <li class="page-item">
