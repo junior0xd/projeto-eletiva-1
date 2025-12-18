@@ -10,3 +10,4 @@ function validar_senha($senha){
     }
     return true;
 }
+?>
