@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $item_procurado = $_GET['produto_procurado'];
+    $parametros_get .= 'produto_procurado=' . urlencode($item_procurado) . '&';
     $vencidos = isset($_GET['checkboxVencidos']);
     if($vencidos){
         $vencido_check = 'checked';
@@ -115,7 +116,7 @@ require('head-navbar.php');
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                         </svg>
                     </span>
-                    <input type="search" class="form-control fw-medium" placeholder="Procurar..." name="produto_procurado" id="produto_procurado">
+                    <input type="search" class="form-control fw-medium" placeholder="Procurar..." name="produto_procurado" id="produto_procurado" value="<?= isset($_GET['produto_procurado']) ? htmlspecialchars($_GET['produto_procurado']) : '' ?>">
                 </div>
             </div>
             <div class="col-auto mt-2">
@@ -129,7 +130,7 @@ require('head-navbar.php');
                             <thead>
                                 <tr>
                                     <th class="text-center" scope="col">Tipo</th>
-                                    <th class="text-center" scope="col"></th>
+                                    <th class="text-center" scope="col">Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,7 +184,10 @@ require('head-navbar.php');
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-info align-self-end">Filtrar</button>
+                        <div class="d-flex flex-row-reverse gap-2">
+                            <button class="btn btn-info">Filtrar</button>
+                            <button class="btn btn-secondary"><a class="text-decoration-none text-white" href="estoque.php">Limpar</a></button>
+                        </div>
                     </form>
                 </div>
             </div>
